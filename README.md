@@ -11,10 +11,11 @@ Resources
 
 This project uses the following guides and libraries:
 
-- [Frontend Nanodegree Style Guides](https://github.com/udacity/frontend-nanodegree-styleguide)
+- Frontend Nanodegree [Style Guides](https://github.com/udacity/frontend-nanodegree-styleguide)
 - Project Grading Rubric 
-- This repository contains starter code from [Memory Game Project](https://github.com/udacity/fend-project-memory-game) via Udacity
-- Normalize.css
+- This repository contains starter code from Udacity's [Memory Game Project](https://github.com/udacity/fend-project-memory-game)
+- Icons courtesy of Font Awesome [CC BY 4.0 License](https://fontawesome.com/license). Learn more about [Font Awesome](https://fontawesome.com/) and its [repository](https://github.com/FortAwesome/Font-Awesome). 
+  
 
 Contributions and Feedback
 --------
