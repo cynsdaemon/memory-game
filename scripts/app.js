@@ -1,8 +1,11 @@
 // DOM References:
 const deck = document.querySelector(".deck");
+const open = document.querySelector(".open");
+const show = document.querySelector(".show");
+const cards = document.querySelectorAll(".card");
 
 // List of cards
-const cards = [];  
+//const openedCards = [];  
 
 
 /*
@@ -29,15 +32,26 @@ function shuffle(array) {
 
 // event listener for card deck
 deck.addEventListener("click", function(){
+	// limit the click event to list
+	if(event.target.tagName === "LI") {
+		console.log("You clicked a card");
+	}
 
-	
-	console.log("You clicked a card");
+}, false);
 
-} , false);
+
+
+
+
+
+
+
+
+
 
 function openCard(){
-	// if (event) 
-		// open card - add .show class to card
+	if(open) 
+	console.log(show) 
 
 }
 
