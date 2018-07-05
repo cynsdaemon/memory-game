@@ -1,5 +1,5 @@
 // DOM References:
-const deck = document.getElementsByClassName("deck");
+const deck = document.querySelector(".deck");
 
 // List of cards
 const cards = [];  
@@ -27,15 +27,23 @@ function shuffle(array) {
     return array;
 }
 
-// TODO: Set up the event listener for a card.
+// event listener for card deck
 deck.addEventListener("click", function(){
-    console.log("You clicked a card");
+
+	
+	console.log("You clicked a card");
 
 } , false);
 
+function openCard(){
+	// if (event) 
+		// open card - add .show class to card
+
+}
+
 function showCard(){
-    // If a card is clicked:
-    // Display the card's symbol 
+  // If a card is clicked:
+  	// Display the card's symbol 
 }        
         
 function addtoDeck(){
