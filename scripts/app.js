@@ -1,12 +1,7 @@
 // DOM References:
 const deck = document.querySelector(".deck");
-const open = document.querySelector(".open");
-const show = document.querySelector(".show");
-const cards = document.querySelectorAll(".card");
-
-// List of cards
-//const openedCards = [];  
-
+const cards = document.getElementsByClassName("card");
+const icons = document.querySelectorAll("i");
 
 /*
  * Display the cards on the page
@@ -30,57 +25,67 @@ function shuffle(array) {
     return array;
 }
 
+// TODO: List of cards
+const usedCards = [];  
+usedCards.push();
+// for card of cards
+// if cards.item(i).className === "card open show"
+	// usedCards.push()
+
+// cards.length // 16
+// cards.item(0) // returns specific node at that index
+;
+// const card2 = cards.item().className; 
+// for(let card of cards){	
+// 	if( === "card match"){
+// 		console.log(firstCard);
+// 	}
+// }
+
+const card1 = null; // store the i element class
+const card2 = null; // store the i element class
+
 // event listener for card deck
 deck.addEventListener("click", function(){
-	// limit the click event to list
-	if(event.target.tagName === "LI") {
-		console.log("You clicked a card");
-	}
-
+	const flippedCards = event.target;	
+	openCard(flippedCards);  
 }, false);
 
-
-
-
-
-
-
-
-
-
-
-function openCard(){
-	if(open) 
-	console.log(show) 
-
+//TODO: - //add class name "open"
+function openCard(flippedCards){
+	if(flippedCards.tagName === "LI") {
+		flippedCards.classList.add("open", "show");				
+		console.log(flippedCards);
+	}
 }
 
-function showCard(){
-  // If a card is clicked:
-  	// Display the card's symbol 
-}        
-        
+// TODO:
 function addtoDeck(){
-// Add the card to a *list* of "open" cards 
+// Add the card to a *list* of usedCards 
 // If the list already has another card, check to see if the two cards match
 }
 
-function cardMatch(){
+// TODO:
+function cardMatch(card1, card2){
 // If the cards do match, lock the cards in the open position 
 }
 
-
+// TODO:
 function missMatchedCards() {
 // If the cards do not match, 
     // remove the cards from the list and hide the card's symbol 
 }
 
-function numOfMoves() {
+// TODO:
+function moveCounter() {
 // increment the move counter and display it on the page 
 
 }
 
+// TODO:
 function gameFinalScore() {
 // If all cards have matched, display a message with the final score 
 
 }
+
+
