@@ -9,7 +9,7 @@ deck.addEventListener("click", function(){
 		open(cardTarget);
 }, false);
 
-// TODO: When clicked, open/show the card
+// When clicked, open/show the card
 function open(cardTarget){		
 	if(cardTarget.tagName === "LI") {
 		cardTarget.classList.toggle("open");
