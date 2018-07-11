@@ -1,12 +1,32 @@
 // DOM References:
 const deck = document.querySelector(".deck");
-const cards = document.getElementsByClassName("card");
 const icons = document.querySelectorAll("i");
+const cards = document.getElementsByClassName("card");
 
 // event listener for card deck
 deck.addEventListener("click", function(){
 	const cardTarget = event.target;
 		open(cardTarget);
+		// To Match cards: 
+		
+			// store flipped cards in an array
+			const flippedCards = [];			
+				for(let card of cards) {
+					if(card.classList.contains("show")) {
+						flippedCards.push(card);
+						console.log(flippedCards);
+					}
+			
+			}
+						
+
+				
+				
+				// compare cards that have been opened
+				// if card icon class is a match
+            // add the .match class to cards
+		
+
 }, false);
 
 // When clicked, open/show the card
