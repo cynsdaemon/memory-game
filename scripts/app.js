@@ -10,21 +10,28 @@ deck.addEventListener("click", function(){
 		// To Match cards: 
 		
 			// store flipped cards in an array
-			const flippedCards = [];			
+			let flippedCards = [];
+			
+						
 				for(let card of cards) {
-					if(card.classList.contains("show")) {
+	
+					if( card.classList.contains("show") && flippedCards.length <= 2 ) {
 						flippedCards.push(card);
 						console.log(flippedCards);
+					} 
+					// if flipped cards equal 2, TODO: add empty array timeout
+					if(flippedCards.length === 3) {
+						flippedCards = [];
+						console.log(flippedCards.length);
 					}
-			
-			}
-						
-
+				
+				}	
+				
+					
 				
 				
-				// compare cards that have been opened
-				// if card icon class is a match
-            // add the .match class to cards
+				
+            
 		
 
 }, false);
@@ -49,3 +56,4 @@ function open(cardTarget){
 	// it displays the time it took to win the game and,
 	// display the star rating
 // TODO: add a restart button, allows the player to reset the game
+// TODO: generate innerHTML, cards icons, draw game board, etc.
