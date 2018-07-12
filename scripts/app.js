@@ -1,7 +1,7 @@
 // DOM References:
 const deck = document.querySelector(".deck");
-const icons = document.querySelectorAll("i");
 const cards = document.getElementsByClassName("card");
+const icons = document.querySelectorAll("i");
 
 // event listener for card deck
 deck.addEventListener("click", function(){
@@ -11,24 +11,40 @@ deck.addEventListener("click", function(){
 		
 			// store flipped cards in an array
 			let flippedCards = [];
-			
 						
-				for(let card of cards) {
-	
-					if( card.classList.contains("show") && flippedCards.length <= 2 ) {
-						flippedCards.push(card);
-						console.log(flippedCards);
-					} 
-					// if flipped cards equal 2, TODO: add empty array timeout
-					if(flippedCards.length === 3) {
-						flippedCards = [];
-						console.log(flippedCards.length);
+			for(let card of cards) {
+				if(card.classList.contains("show") ) {
+					
+					flippedCards.push(card);
+					console.log(flippedCards);
+				} 
+							
+				// TODO: check flippedCards array for match
+			
+					if((flippedCards.length === 2) && (flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value)){
+						flippedCards[0].classList.add("match");
+						flippedCards[1].classList.add("match");
 					}
-				
-				}	
-				
+					
+					// TODO: if no match
+					// if(!flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value) {
+					// 	flippedCards[0].classList.remove("match");
+					// 	flippedCards[1].classList.remove("match");
+					// }
+
+						
 					
 				
+				// if flipped cards equal 2, TODO: add empty array timeout
+				// if(flippedCards.length === 3) {
+				// 	flippedCards = [];
+				// }
+			
+			}
+				
+		
+				
+
 				
 				
             
