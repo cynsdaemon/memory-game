@@ -13,7 +13,7 @@ deck.addEventListener("click", function(){
 			let flippedCards = [];
 						
 			for(let card of cards) {
-				if(card.classList.contains("show") ) {
+				if(card.classList.contains("show")) {
 					
 					flippedCards.push(card);
 					console.log(flippedCards);
@@ -21,10 +21,15 @@ deck.addEventListener("click", function(){
 							
 				// TODO: check flippedCards array for match
 			
-					if((flippedCards.length === 2) && (flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value)){
+					if((flippedCards.length === 2) && (flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value)) {
 						flippedCards[0].classList.add("match");
 						flippedCards[1].classList.add("match");
-					}
+						flippedCards = [];
+					} 
+
+					// if(flippedCards[0].classList.contains("match") || flippedCards[1].classList.contains("match") === true) {
+					// 	flippedCards = [];
+					// }
 					
 					// TODO: if no match
 					// if(!flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value) {
@@ -32,7 +37,6 @@ deck.addEventListener("click", function(){
 					// 	flippedCards[1].classList.remove("match");
 					// }
 
-						
 					
 				
 				// if flipped cards equal 2, TODO: add empty array timeout
@@ -41,6 +45,9 @@ deck.addEventListener("click", function(){
 				// }
 			
 			}
+
+			console.log(flippedCards.length);
+
 				
 		
 				
