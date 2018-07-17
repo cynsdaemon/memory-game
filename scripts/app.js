@@ -27,20 +27,18 @@ function matchCards() {
 			if(card.classList.contains("open") && card.classList.contains("show")){
 				flippedCards.push(card);
 			}
-			
-			if(flippedCards === 2 && flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value){
+			// If cards match, 
+			if(flippedCards.length === 2 && flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value){
 				flippedCards[0].classList.add("match");
-				flippedCards[1].classList.remove("match");
-			}
-			// If match, remove open & show
-			if(flippedCards === 2 && flippedCards[0].classList.contains("match") && flippedCards[1].classList.contains("match")) {
+				flippedCards[1].classList.add("match");
+			}else if(flippedCards.length === 2 && flippedCards[0].classList.contains("match") && flippedCards[1].classList.contains("match")) {
+				// remove open & show
 				flippedCards[0].classList.remove("open", "show");
 				flippedCards[1].classList.remove("open", "show");
 			} else { 
 				close(flippedCards);
 			}
-		}
-		
+		}		
 }
 
 function close(flippedCards){
@@ -49,8 +47,7 @@ function close(flippedCards){
 			flippedCards[0].classList.remove("open", "show");
 			flippedCards[1].classList.remove("open", "show");
 			flippedCards = [];
-		}, 1000);
-											
+		}, 1000);										
 	}
 }
 
