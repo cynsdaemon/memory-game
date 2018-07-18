@@ -69,16 +69,3 @@ function stopTimer(){
 }
 
 function moveCounter(){}
-
-
-// Per project rubric:
-// TODO: Change star rating after move based on how well the player is doing in game
-// TODO: add game timer that starts when the game begins
-// TODO: add Player move counter
-// TODO: When the player wins a game, 
-	// add a Congratulations Popup
-	// that asks if the player wants to play again,
-	// it displays the time it took to win the game and,
-	// display the star rating
-// TODO: add a restart button, allows the player to reset the game
-// TODO: generate innerHTML, cards icons, draw game board, etc.
