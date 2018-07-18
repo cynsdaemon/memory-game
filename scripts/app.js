@@ -14,9 +14,12 @@ deck.addEventListener("click", function(){
 
 // When clicked, open/show the card
 function open(cardTarget){		
-	if(cardTarget.tagName === "LI") {
+	if(cardTarget.tagName === "LI"){
 		cardTarget.classList.add("open", "show");
-
+		if(start){
+			startTimer();
+			start = false;
+		}	
 	} 
 }
 
@@ -24,7 +27,7 @@ function matchCards(){
 	// store flipped cards in an array
 	let flippedCards = [];
 		// If card is open, add to array 			
-		for(let card of cards) {
+		for(let card of cards){
 			if(card.classList.contains("open") && card.classList.contains("show")){
 				flippedCards.push(card);
 			}
@@ -32,7 +35,7 @@ function matchCards(){
 			if(flippedCards.length === 2 && flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value){
 				flippedCards[0].classList.add("match");
 				flippedCards[1].classList.add("match");
-			}else if(flippedCards.length === 2 && flippedCards[0].classList.contains("match") && flippedCards[1].classList.contains("match")) {
+			}else if(flippedCards.length === 2 && flippedCards[0].classList.contains("match") && flippedCards[1].classList.contains("match")){
 				// remove open & show
 				flippedCards[0].classList.remove("open", "show");
 				flippedCards[1].classList.remove("open", "show");
@@ -55,13 +58,14 @@ function close(flippedCards){
 // game timer
 function startTimer(){
 	time = 0;
-	
-	counter = setInterval(function(){
+	start = false;
+		counter = setInterval(function(){
 		// update game timer
-		time++;
-		gameTimer.innerHTML = time;
-	} ,1000);
-	
+			time++;
+			gameTimer.innerHTML = time;
+		} ,1000);
+
+
 }
 
 function stopTimer(){
