@@ -1,8 +1,8 @@
 // DOM References:
 const deck = document.querySelector(".deck");
-const icons = document.querySelectorAll("i");
+const gameTimer = document.querySelector(".game-timer");
 const cards = document.getElementsByClassName("card");
-
+let start = true;
 
 // event listener for card deck
 deck.addEventListener("click", function(){
@@ -19,7 +19,7 @@ function open(cardTarget){
 	} 
 }
 
-function matchCards() {
+function matchCards(){
 	// store flipped cards in an array
 	let flippedCards = [];
 		// If card is open, add to array 			
@@ -42,7 +42,7 @@ function matchCards() {
 }
 
 function close(flippedCards){
-	if(flippedCards.length === 2) {
+	if(flippedCards.length === 2){
 		setTimeout(function(){
 			flippedCards[0].classList.remove("open", "show");
 			flippedCards[1].classList.remove("open", "show");
@@ -50,6 +50,27 @@ function close(flippedCards){
 		}, 1000);										
 	}
 }
+
+// game timer
+function startGameTimer(){
+	count = 0;
+	
+	setInterval(function(){
+		// update game timer
+		count++;
+		gameTimer.innerHTML = count;
+	} ,1000);
+	
+}
+// startGameTimer();
+
+function stopGameTimer(){
+	clearInterval(gameTimer);
+}
+
+// stopGameTimer();
+
+
 
 // Per project rubric:
 // TODO: Change star rating after move based on how well the player is doing in game
