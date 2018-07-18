@@ -3,6 +3,7 @@ const deck = document.querySelector(".deck");
 const gameTimer = document.querySelector(".game-timer");
 const cards = document.getElementsByClassName("card");
 let start = true;
+let counter;
 
 // event listener for card deck
 deck.addEventListener("click", function(){
@@ -52,24 +53,22 @@ function close(flippedCards){
 }
 
 // game timer
-function startGameTimer(){
-	count = 0;
+function startTimer(){
+	time = 0;
 	
-	setInterval(function(){
+	counter = setInterval(function(){
 		// update game timer
-		count++;
-		gameTimer.innerHTML = count;
+		time++;
+		gameTimer.innerHTML = time;
 	} ,1000);
 	
 }
-// startGameTimer();
 
-function stopGameTimer(){
-	clearInterval(gameTimer);
+function stopTimer(){
+	clearInterval(counter);
 }
 
-// stopGameTimer();
-
+function moveCounter(){}
 
 
 // Per project rubric:
