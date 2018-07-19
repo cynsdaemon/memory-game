@@ -6,8 +6,8 @@ const restart = document.querySelector(".restart");
 const moves = document.querySelector(".moves");
 let start = true;
 let counter;
-gameTimer.textContent = "Timer: 0.00";
-restart.textContent = "Restart Game";
+gameTimer.insertAdjacentText("beforeend","Timer: 0.00");
+restart.insertAdjacentText("beforeend", "Restart Game");
 moves.textContent = "Moves";
 
 // event listener for card deck
