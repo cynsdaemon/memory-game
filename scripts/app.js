@@ -1,9 +1,14 @@
 // DOM References:
 const deck = document.querySelector(".deck");
-const gameTimer = document.querySelector(".game-timer");
 const cards = document.getElementsByClassName("card");
+const gameTimer = document.querySelector(".game-timer");
+const restart = document.querySelector(".restart");
+const moves = document.querySelector(".moves");
 let start = true;
 let counter;
+gameTimer.textContent = "Timer: 0.00";
+restart.textContent = "Restart Game";
+moves.textContent = "Moves";
 
 // event listener for card deck
 deck.addEventListener("click", function(){
@@ -57,19 +62,23 @@ function close(flippedCards){
 
 // game timer
 function startTimer(){
-	time = 0;
+	let time = 0;
 	start = false;
+	let minutes = time/60;
 		counter = setInterval(function(){
-		// update game timer
+			// update game timer
 			time++;
-			gameTimer.innerHTML = time;
+			gameTimer.textContent = `Timer: 0.${time}`;
+		
 		} ,1000);
-
-
 }
+	
+
 
 function stopTimer(){
 	clearInterval(counter);
 }
 
 function moveCounter(){}
+
+function endGame(){}
