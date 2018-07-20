@@ -80,7 +80,7 @@ function stopTimer(){
 	clearInterval(counter);
 }
 
-// TODO: move counter
+// move counter
 function gameMoveCounter(){
 	playerMoves++;
 	moves.textContent = `${playerMoves} Moves`;
