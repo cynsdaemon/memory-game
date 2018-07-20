@@ -4,7 +4,7 @@
 
 This repo serves as a home for the 'Memory Game' project in the Udacity [Frontend Web Development](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) Nanodegree. 
 
-You may view the live project [here](https://cynsdaemon.github.io/memory-game/). Note: You will need to have a modern browser with JavaScript enabled. 
+You may view the live project [here](https://cynsdaemon.github.io/memory-game/). Note: You will need to use a modern browser and have JavaScript enabled. 
 
 Resources
 --------

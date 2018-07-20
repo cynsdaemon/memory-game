@@ -1,14 +1,15 @@
 // DOM References:
 const deck = document.querySelector(".deck");
 const cards = document.getElementsByClassName("card");
-const gameTimer = document.querySelector(".game-timer");
+const timer = document.querySelector(".timer");
 const restart = document.querySelector(".restart");
 const moves = document.querySelector(".moves");
-let start = true;
-let counter;
-gameTimer.insertAdjacentText("beforeend","Timer: 0.00");
+const stars = document.querySelector(".stars");
+let start = true; // start game
+let counter; // game clock
+let playerMoves = 0; 
+timer.insertAdjacentText("beforeend","Timer: 0.00");
 restart.insertAdjacentText("beforeend", "Restart Game");
-moves.textContent = "Moves";
 
 // event listener for card deck
 deck.addEventListener("click", function(){
@@ -23,6 +24,7 @@ function open(cardTarget){
 		cardTarget.classList.add("open", "show");
 		if(start){
 			startTimer();
+			gameMoveCounter();
 			start = false;
 		}	
 	} 
@@ -40,8 +42,6 @@ function matchCards(){
 			if(flippedCards.length === 2 && flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value){
 				flippedCards[0].classList.add("match");
 				flippedCards[1].classList.add("match");
-			}else if(flippedCards.length === 2 && flippedCards[0].classList.contains("match") && flippedCards[1].classList.contains("match")){
-				// remove open & show
 				flippedCards[0].classList.remove("open", "show");
 				flippedCards[1].classList.remove("open", "show");
 			} else { 
@@ -56,29 +56,64 @@ function close(flippedCards){
 			flippedCards[0].classList.remove("open", "show");
 			flippedCards[1].classList.remove("open", "show");
 			flippedCards = [];
+			// update game moves counter
+			gameMovesCounter();
 		}, 1000);										
 	}
 }
 
-// game timer
+// start timer
 function startTimer(){
 	let time = 0;
 	start = false;
-	let minutes = time/60;
+	// let minutes = time/60;
 		counter = setInterval(function(){
 			// update game timer
 			time++;
-			gameTimer.textContent = `Timer: 0.${time}`;
+			timer.textContent = `Timer: 0.${time}`;
 		
 		} ,1000);
 }
-	
 
-
+// stop timer
 function stopTimer(){
 	clearInterval(counter);
 }
 
-function moveCounter(){}
+// TODO: move counter
+function gameMoveCounter(){
+	playerMoves++;
+	moves.textContent = `${playerMoves} Moves`;
+	// remove a star
+	if(playerMoves === 8){
+	stars.querySelector("li").remove();
+	}else if(playerMoves > 16){
+		stars.querySelector("li").remove();
+	}
+}
 
-function endGame(){}
+
+
+function endGame(){
+	// start game = false;
+	// if all cards are matched
+		// stop game timer
+		// display game modal
+	
+
+}
+
+function restartGame(){
+	//generate game board
+		// reset move counter 
+		// reset game timer
+		// shuffle cards
+		// clear end game modal
+	
+}
+
+function generateGameBoard(){}
+
+
+
+ 

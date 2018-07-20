@@ -86,28 +86,44 @@ h1 {
  */
 
 .score-panel {
+    
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    display: inline-flex;
+    flex-flow: row;
+    justify-content: space-between;
 }
 
 .score-panel .stars {
     margin: 0;
     padding: 0;
-    display: inline-block;
+    /* display: inline-block; */
     margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
     list-style: none;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .score-panel .restart {
-    float: right;
+    /* float: right; */
     cursor: pointer;
 }
 
-.game-timer {
-    padding: 5px;
+.stars {
+    display: flex;
+    order: -1;
+
 }
+
+.game-clock {
+    order: 2;
+}
+
+.restart {
+    order: 3;
+}
+
+
