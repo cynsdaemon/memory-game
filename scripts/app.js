@@ -15,7 +15,8 @@ restart.insertAdjacentText("beforeend", "Restart Game");
 deck.addEventListener("click", function(){
 	const cardTarget = event.target;
 		open(cardTarget);
-		matchCards();				
+		matchCards();
+		gameMovesCounter(flippedCards);
 }, false);
 
 // When clicked, open/show the card
@@ -23,28 +24,28 @@ function open(cardTarget){
 	if(cardTarget.tagName === "LI"){
 		cardTarget.classList.add("open", "show");
 		if(start){
-			startTimer();
-			gameMoveCounter();
+			startTimer();		
 			start = false;
 		}	
 	} 
 }
 
 function matchCards(){
-	// store flipped cards in an array
-	let flippedCards = [];
+	// Store flipped cards in an array
+	flippedCards = [];
 		// If card is open, add to array 			
 		for(let card of cards){
 			if(card.classList.contains("open") && card.classList.contains("show")){
 				flippedCards.push(card);
 			}
+		
 			// If cards match, 
 			if(flippedCards.length === 2 && flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value){
 				flippedCards[0].classList.add("match");
 				flippedCards[1].classList.add("match");
 				flippedCards[0].classList.remove("open", "show");
 				flippedCards[1].classList.remove("open", "show");
-			} else { 
+			}else { 
 				close(flippedCards);
 			}
 		}		
@@ -55,10 +56,8 @@ function close(flippedCards){
 		setTimeout(function(){
 			flippedCards[0].classList.remove("open", "show");
 			flippedCards[1].classList.remove("open", "show");
-			flippedCards = [];
-			// update game moves counter
-			gameMovesCounter();
-		}, 1000);										
+			flippedCards = [];			
+		}, 1000);
 	}
 }
 
@@ -71,7 +70,6 @@ function startTimer(){
 			// update game timer
 			time++;
 			timer.textContent = `Timer: 0.${time}`;
-		
 		} ,1000);
 }
 
@@ -81,14 +79,19 @@ function stopTimer(){
 }
 
 // move counter
-function gameMoveCounter(){
-	playerMoves++;
-	moves.textContent = `${playerMoves} Moves`;
+function gameMovesCounter(){
+	if(flippedCards.length === 2){
+	// update move counter
+		playerMoves++;
+		moves.textContent = `${playerMoves} Moves`;
+	} 
 	// remove a star
-	if(playerMoves === 8){
-	stars.querySelector("li").remove();
-	}else if(playerMoves > 16){
+	if(playerMoves === 8 || playerMoves === 16 || playerMoves === 20){
 		stars.querySelector("li").remove();
+	}else if(stars.querySelector("li") === null){
+		// TODO: fix condition for no stars
+		console.log("there's no more stars!");
+
 	}
 }
 
@@ -100,16 +103,15 @@ function endGame(){
 		// stop game timer
 		// display game modal
 	
-
 }
 
 function restartGame(){
+	// reset move counter 
+	// reset game timer
+	// remove match classes from cards
+	// shuffle cards
+	// clear end game modal
 	//generate game board
-		// reset move counter 
-		// reset game timer
-		// shuffle cards
-		// clear end game modal
-	
 }
 
 function generateGameBoard(){}
