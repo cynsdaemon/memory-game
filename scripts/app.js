@@ -1,15 +1,24 @@
 // DOM References:
 const deck = document.querySelector(".deck");
-const cards = document.getElementsByClassName("card");
 const timer = document.querySelector(".timer");
-const restart = document.querySelector(".restart");
 const moves = document.querySelector(".moves");
 const stars = document.querySelector(".stars");
-let start = true; // start game
-let counter; // game clock
-let playerMoves = 0; 
+const resetBtn = document.querySelector("#resetBtn");
+const cards = document.getElementsByClassName("card");
+const allCardsArr = Array.from(cards);
+let gameInPlay = true; // start game
+let counter; // setInterval
+let playerMoves = 0;
+
+resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
 timer.insertAdjacentText("beforeend","Timer: 0.00");
-restart.insertAdjacentText("beforeend", "Restart Game");
+
+//shuffle(allCardsArr);
+function generateGameBoard(){}
+
+// create game tag and text elements
+function createContent(tag, text){}
+
 
 // event listener for card deck
 deck.addEventListener("click", function(){
@@ -23,9 +32,9 @@ deck.addEventListener("click", function(){
 function open(cardTarget){		
 	if(cardTarget.tagName === "LI"){
 		cardTarget.classList.add("open", "show");
-		if(start){
+		if(gameInPlay){
 			startTimer();		
-			start = false;
+			gameInPlay = false;
 		}	
 	} 
 }
@@ -34,7 +43,7 @@ function matchCards(){
 	// Store flipped cards in an array
 	flippedCards = [];
 		// If card is open, add to array 			
-		for(let card of cards){
+		for(let card of allCardsArr){
 			if(card.classList.contains("open") && card.classList.contains("show")){
 				flippedCards.push(card);
 			}
@@ -64,7 +73,7 @@ function close(flippedCards){
 // start timer
 function startTimer(){
 	let time = 0;
-	start = false;
+	//gameInPlay = false;
 	// let minutes = time/60;
 		counter = setInterval(function(){
 			// update game timer
@@ -95,7 +104,20 @@ function gameMovesCounter(){
 	}
 }
 
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
 
 function endGame(){
 	// start game = false;
@@ -105,16 +127,41 @@ function endGame(){
 	
 }
 
-function restartGame(){
-	// reset move counter 
-	// reset game timer
-	// remove match classes from cards
-	// shuffle cards
-	// clear end game modal
-	//generate game board
+// reset game event listener
+resetBtn.addEventListener("click", function(){
+		resetMoveCounter();
+		stopTimer();
+		resetTimer();
+		resetDeck();
+		shuffle(allCardsArr);
+
+
+}, false);
+
+function resetMoveCounter(){
+	playerMoves = 0;
+	moves.textContent = `${playerMoves} Moves`;
+	// TODO: reset star items
+		// create ul element with class .stars
+		// create li element with class fa fa-star
+		// append child to parent element
+
 }
 
-function generateGameBoard(){}
+function resetTimer(){
+	time = 0;
+	timer.textContent = `Timer: 0.${time}`;
+
+}
+
+function resetDeck(){
+	flippedCards = [];
+	for(card of cards){
+		card.classList.value = "card";
+	}
+}
+
+
 
 
 
