@@ -4,26 +4,36 @@ const timer = document.querySelector(".timer");
 const moves = document.querySelector(".moves");
 const stars = document.querySelector(".stars");
 const resetBtn = document.querySelector("#resetBtn");
-const cards = document.getElementsByClassName("card");
 let gameInPlay = true; // start game
-let counter; // setInterval
+let counter; // setInterval, game timer
 let playerMoves = 0;
-const allCardsArr = ["far fa-gem", "far fa-gem",
-					 "far fa-paper-plane", "far fa-paper-plane",
-					 "fa fa-anchor", "fa fa-anchor",
-					 "fa fa-bolt", "fa fa-bolt",
-					 "fa fa-cube", "fa fa-cube",
-					 "fa fa-anchor", "fa fa-anchor",
-					 "fa fa-leaf", "fa fa-leaf",
-					 "fa fa-bicycle", "fa fa-bicycle"
-					];
+const allCards = [	"far fa-gem", "far fa-gem",
+					"far fa-paper-plane", "far fa-paper-plane",
+					"fa fa-anchor", "fa fa-anchor",
+					"fa fa-bolt", "fa fa-bolt",
+					"fa fa-cube", "fa fa-cube",
+					"fa fa-anchor", "fa fa-anchor",
+					"fa fa-leaf", "fa fa-leaf",
+					"fa fa-bicycle", "fa fa-bicycle"
+				  	];
 
 resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
 timer.insertAdjacentText("beforeend","Timer: 0.00");					
 
-// TODO: generate elements for game board
+// generate elements for game board
 function generateCardEl(){
-	// loop thru and create elements for the cards
+	// loop thru and create elements for the cards	
+	for(let card = 0; card < allCards.length; card++){
+		let cardHTML = document.createElement("li");
+		deck.appendChild(cardHTML);
+		cardHTML.classList.add("card");		
+		
+		
+	
+	
+	}
+
+	
 	// create element LI item
 	// set attribute
 	// append to the parent (deck)
@@ -31,8 +41,9 @@ function generateCardEl(){
 	// set attribute
 	// append to LI item
 }
+generateCardEl();
 
-shuffle(allCardsArr);
+shuffle(allCards);
 // event listener for card deck
 deck.addEventListener("click", function(){
 	const cardTarget = event.target;
@@ -118,7 +129,7 @@ function gameMovesCounter(){
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+function shuffle(array){
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -150,7 +161,6 @@ resetBtn.addEventListener("click", function(){
 	resetDeck();
 	resetMoveCounter();
 	stopTimer();
-	resetTimer(cardTarget, flippedCards);
 	shuffle(allCardsArr);
 
 		
