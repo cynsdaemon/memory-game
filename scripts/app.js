@@ -7,7 +7,8 @@ const resetBtn = document.querySelector("#resetBtn");
 let gameInPlay = true; // start game
 let counter; // setInterval, game timer
 let playerMoves = 0;
-const allCards = [	"far fa-gem", "far fa-gem",
+const starCount = 3; // total number of stars
+const allCards = [  "far fa-gem", "far fa-gem",
 					"far fa-paper-plane", "far fa-paper-plane",
 					"fa fa-anchor", "fa fa-anchor",
 					"fa fa-bolt", "fa fa-bolt",
@@ -15,35 +16,44 @@ const allCards = [	"far fa-gem", "far fa-gem",
 					"fa fa-anchor", "fa fa-anchor",
 					"fa fa-leaf", "fa fa-leaf",
 					"fa fa-bicycle", "fa fa-bicycle"
-				  	];
+				];
 
 resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
 timer.insertAdjacentText("beforeend","Timer: 0.00");					
 
 // generate elements for game board
-function generateCardEl(){
+function generateCards(){
 	// loop thru and create elements for the cards	
 	for(let card = 0; card < allCards.length; card++){
 		let cardHTML = document.createElement("li");
+		let iconHTML = document.createElement("i");
+		
 		deck.appendChild(cardHTML);
 		cardHTML.classList.add("card");		
 		
-		
-	
-	
+		for(let icon = 0; icon < allCards.length; icon++){
+			cardHTML.appendChild(iconHTML);
+			// TODO: iconHTML.classList.add("");
+		}
 	}
-
-	
-	// create element LI item
-	// set attribute
-	// append to the parent (deck)
-	// creat element <i> item
-	// set attribute
-	// append to LI item
 }
-generateCardEl();
-
+generateCards();
 shuffle(allCards);
+
+// create star items
+function generateStars(){	
+	for(let s = 0; s < starCount; s++) {
+		let starHTML = document.createElement("li");
+		let starIcon = document.createElement("i");
+			stars.appendChild(starHTML);
+		for(let i = 0; i < starCount; i++){
+			starHTML.appendChild(starIcon);
+			starIcon.classList.add("fa", "fa-star");
+		}
+	}
+}
+generateStars();
+
 // event listener for card deck
 deck.addEventListener("click", function(){
 	const cardTarget = event.target;
@@ -170,7 +180,7 @@ resetBtn.addEventListener("click", function(){
 function resetMoveCounter(){
 	playerMoves = 0;
 	moves.textContent = `${playerMoves} Moves`;
-	// TODO: reset star items:
+		// TODO: reset star items:
 		// create ul element with class .stars
 		// create li element with class fa fa-star
 		// append child to parent element
