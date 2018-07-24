@@ -5,21 +5,34 @@ const moves = document.querySelector(".moves");
 const stars = document.querySelector(".stars");
 const resetBtn = document.querySelector("#resetBtn");
 const cards = document.getElementsByClassName("card");
-const allCardsArr = Array.from(cards);
 let gameInPlay = true; // start game
 let counter; // setInterval
 let playerMoves = 0;
+const allCardsArr = ["far fa-gem", "far fa-gem",
+					 "far fa-paper-plane", "far fa-paper-plane",
+					 "fa fa-anchor", "fa fa-anchor",
+					 "fa fa-bolt", "fa fa-bolt",
+					 "fa fa-cube", "fa fa-cube",
+					 "fa fa-anchor", "fa fa-anchor",
+					 "fa fa-leaf", "fa fa-leaf",
+					 "fa fa-bicycle", "fa fa-bicycle"
+					];
 
 resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
-timer.insertAdjacentText("beforeend","Timer: 0.00");
+timer.insertAdjacentText("beforeend","Timer: 0.00");					
 
-//shuffle(allCardsArr);
-function generateGameBoard(){}
+// TODO: generate elements for game board
+function generateCardEl(){
+	// loop thru and create elements for the cards
+	// create element LI item
+	// set attribute
+	// append to the parent (deck)
+	// creat element <i> item
+	// set attribute
+	// append to LI item
+}
 
-// create game tag and text elements
-function createContent(tag, text){}
-
-
+shuffle(allCardsArr);
 // event listener for card deck
 deck.addEventListener("click", function(){
 	const cardTarget = event.target;
@@ -43,7 +56,7 @@ function matchCards(){
 	// Store flipped cards in an array
 	flippedCards = [];
 		// If card is open, add to array 			
-		for(let card of allCardsArr){
+		for(let card of cards){
 			if(card.classList.contains("open") && card.classList.contains("show")){
 				flippedCards.push(card);
 			}
@@ -119,29 +132,35 @@ function shuffle(array) {
     return array;
 }
 
+// TODO: End game
 function endGame(){
-	// start game = false;
 	// if all cards are matched
+	// gameInPlay = false;
 		// stop game timer
+		// stop move counter
+		// disable event listeners
 		// display game modal
-	
+			// show move counter status
+			// show game timer results
+			// add option to restart the game
 }
 
 // reset game event listener
 resetBtn.addEventListener("click", function(){
-		resetMoveCounter();
-		stopTimer();
-		resetTimer();
-		resetDeck();
-		shuffle(allCardsArr);
+	resetDeck();
+	resetMoveCounter();
+	stopTimer();
+	resetTimer(cardTarget, flippedCards);
+	shuffle(allCardsArr);
 
+		
 
 }, false);
 
 function resetMoveCounter(){
 	playerMoves = 0;
 	moves.textContent = `${playerMoves} Moves`;
-	// TODO: reset star items
+	// TODO: reset star items:
 		// create ul element with class .stars
 		// create li element with class fa fa-star
 		// append child to parent element
@@ -151,6 +170,9 @@ function resetMoveCounter(){
 function resetTimer(){
 	time = 0;
 	timer.textContent = `Timer: 0.${time}`;
+	// TODO: Start game timer if game is in play
+		// if flippedCards.length has >= 1
+		// or if player clicks on a cardTarget
 
 }
 
