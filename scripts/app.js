@@ -8,7 +8,8 @@ let gameInPlay = true; // start game
 let counter; // setInterval, game timer
 let playerMoves = 0;
 const starCount = 3; // total number of stars
-const allCards = [  "far fa-gem", "far fa-gem",
+const cardCount = 16;
+const cardIcons = [ "far fa-gem", "far fa-gem",
 					"far fa-paper-plane", "far fa-paper-plane",
 					"fa fa-anchor", "fa fa-anchor",
 					"fa fa-bolt", "fa fa-bolt",
@@ -18,31 +19,40 @@ const allCards = [  "far fa-gem", "far fa-gem",
 					"fa fa-bicycle", "fa fa-bicycle"
 				];
 
+const deck_o_cards = document.getElementsByClassName("card");
+
 resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
 timer.insertAdjacentText("beforeend","Timer: 0.00");					
 
 // generate elements for game board
 function generateCards(){
 	// loop thru and create elements for the cards	
-	for(let card = 0; card < allCards.length; card++){
+	for(let card = 0; card < cardCount; card++){
 		let cardHTML = document.createElement("li");
 		let iconHTML = document.createElement("i");
+		let toList = iconHTML.innerHTML;
+		
 		
 		deck.appendChild(cardHTML);
 		cardHTML.classList.add("card");		
 		
-		for(let icon = 0; icon < allCards.length; icon++){
+		for(let icon = 0; icon < cardCount; icon++){
 			cardHTML.appendChild(iconHTML);
-			// TODO: iconHTML.classList.add("");
+
+	
+			
+
 		}
 	}
 }
+
 generateCards();
-shuffle(allCards);
+//shuffle(deck_o_cards);
+
 
 // create star items
 function generateStars(){	
-	for(let s = 0; s < starCount; s++) {
+	for(let s = 0; s < starCount; s++){
 		let starHTML = document.createElement("li");
 		let starIcon = document.createElement("i");
 			stars.appendChild(starHTML);
@@ -58,8 +68,8 @@ generateStars();
 deck.addEventListener("click", function(){
 	const cardTarget = event.target;
 		open(cardTarget);
-		matchCards();
-		gameMovesCounter(flippedCards);
+		//matchCards();
+		gameMovesCounter(myCards);
 }, false);
 
 // When clicked, open/show the card
@@ -75,31 +85,31 @@ function open(cardTarget){
 
 function matchCards(){
 	// Store flipped cards in an array
-	flippedCards = [];
+	myCards = [];
 		// If card is open, add to array 			
 		for(let card of cards){
 			if(card.classList.contains("open") && card.classList.contains("show")){
-				flippedCards.push(card);
+				myCards.push(card);
 			}
 		
 			// If cards match, 
-			if(flippedCards.length === 2 && flippedCards[0].firstElementChild.classList.value === flippedCards[1].firstElementChild.classList.value){
-				flippedCards[0].classList.add("match");
-				flippedCards[1].classList.add("match");
-				flippedCards[0].classList.remove("open", "show");
-				flippedCards[1].classList.remove("open", "show");
+			if(myCards.length === 2 && myCards[0].firstElementChild.classList.value === myCards[1].firstElementChild.classList.value){
+				myCards[0].classList.add("match");
+				myCards[1].classList.add("match");
+				myCards[0].classList.remove("open", "show");
+				myCards[1].classList.remove("open", "show");
 			}else { 
-				close(flippedCards);
+				close(myCards);
 			}
 		}		
 }
 
-function close(flippedCards){
-	if(flippedCards.length === 2){
+function close(myCards){
+	if(myCards.length === 2){
 		setTimeout(function(){
-			flippedCards[0].classList.remove("open", "show");
-			flippedCards[1].classList.remove("open", "show");
-			flippedCards = [];			
+			myCards[0].classList.remove("open", "show");
+			myCards[1].classList.remove("open", "show");
+			myCards = [];			
 		}, 1000);
 	}
 }
@@ -123,7 +133,7 @@ function stopTimer(){
 
 // move counter
 function gameMovesCounter(){
-	if(flippedCards.length === 2){
+	if(myCards.length === 2){
 	// update move counter
 		playerMoves++;
 		moves.textContent = `${playerMoves} Moves`;
@@ -171,7 +181,7 @@ resetBtn.addEventListener("click", function(){
 	resetDeck();
 	resetMoveCounter();
 	stopTimer();
-	shuffle(allCardsArr);
+	//shuffle(deck_o_cards);
 
 		
 
@@ -180,10 +190,7 @@ resetBtn.addEventListener("click", function(){
 function resetMoveCounter(){
 	playerMoves = 0;
 	moves.textContent = `${playerMoves} Moves`;
-		// TODO: reset star items:
-		// create ul element with class .stars
-		// create li element with class fa fa-star
-		// append child to parent element
+	generateStars();
 
 }
 
@@ -191,16 +198,14 @@ function resetTimer(){
 	time = 0;
 	timer.textContent = `Timer: 0.${time}`;
 	// TODO: Start game timer if game is in play
-		// if flippedCards.length has >= 1
+		// if myCards.length has >= 1
 		// or if player clicks on a cardTarget
 
 }
 
 function resetDeck(){
-	flippedCards = [];
-	for(card of cards){
-		card.classList.value = "card";
-	}
+	myCards = [];
+
 }
 
 
