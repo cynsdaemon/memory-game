@@ -8,47 +8,41 @@ let gameInPlay = true; // start game
 let counter; // setInterval, game timer
 let playerMoves = 0;
 const starCount = 3; // total number of stars
-const cardCount = 16;
-const cardIcons = [ "far fa-gem", "far fa-gem",
-					"far fa-paper-plane", "far fa-paper-plane",
-					"fa fa-anchor", "fa fa-anchor",
-					"fa fa-bolt", "fa fa-bolt",
-					"fa fa-cube", "fa fa-cube",
-					"fa fa-anchor", "fa fa-anchor",
-					"fa fa-leaf", "fa fa-leaf",
-					"fa fa-bicycle", "fa fa-bicycle"
-				];
+const iconClassList = [ "far fa-gem", "far fa-gem",
+						"far fa-paper-plane", "far fa-paper-plane",
+						"fa fa-anchor", "fa fa-anchor",
+						"fa fa-bolt", "fa fa-bolt",
+						"fa fa-cube", "fa fa-cube",
+						"fa fa-anchor", "fa fa-anchor",
+						"fa fa-leaf", "fa fa-leaf",
+						"fa fa-bicycle", "fa fa-bicycle"
+					  ];
 
-const deck_o_cards = document.getElementsByClassName("card");
+const deck_o_cards = document.getElementsByClassName("card"); 
+const shuffledCards = Array.from(shuffle(deck_o_cards));
+
+console.log(shuffledCards);
 
 resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
 timer.insertAdjacentText("beforeend","Timer: 0.00");					
 
 // generate elements for game board
 function generateCards(){
-	// loop thru and create elements for the cards	
-	for(let card = 0; card < cardCount; card++){
+	// loop thru and create cards	
+	for(let icon of iconClassList){
 		let cardHTML = document.createElement("li");
-		let iconHTML = document.createElement("i");
-		let toList = iconHTML.innerHTML;
-		
-		
+
 		deck.appendChild(cardHTML);
-		cardHTML.classList.add("card");		
-		
-		for(let icon = 0; icon < cardCount; icon++){
-			cardHTML.appendChild(iconHTML);
+		cardHTML.classList.add("card");
 
-	
-			
-
-		}
+		// loop thru and create icons
+		cardHTML.innerHTML = `<i class="${icon}"> </i>`
+								
 	}
+
 }
 
 generateCards();
-//shuffle(deck_o_cards);
-
 
 // create star items
 function generateStars(){	
@@ -86,22 +80,23 @@ function open(cardTarget){
 function matchCards(){
 	// Store flipped cards in an array
 	myCards = [];
-		// If card is open, add to array 			
-		for(let card of cards){
-			if(card.classList.contains("open") && card.classList.contains("show")){
-				myCards.push(card);
-			}
+	
+	// If card is open, add to array 			
+	for(let card of shuffledCards){
+		if(card.classList.contains("open") && card.classList.contains("show")){
+			myCards.push(card);
+		}
 		
-			// If cards match, 
-			if(myCards.length === 2 && myCards[0].firstElementChild.classList.value === myCards[1].firstElementChild.classList.value){
-				myCards[0].classList.add("match");
-				myCards[1].classList.add("match");
-				myCards[0].classList.remove("open", "show");
-				myCards[1].classList.remove("open", "show");
-			}else { 
-				close(myCards);
-			}
-		}		
+		// If cards match, 
+		if(myCards.length === 2 && myCards[0].firstElementChild.classList.value === myCards[1].firstElementChild.classList.value){
+			myCards[0].classList.add("match");
+			myCards[1].classList.add("match");
+			myCards[0].classList.remove("open", "show");
+			myCards[1].classList.remove("open", "show");
+		}else { 
+			close(myCards);
+		}
+	}		
 }
 
 function close(myCards){
@@ -117,13 +112,14 @@ function close(myCards){
 // start timer
 function startTimer(){
 	let time = 0;
+	
 	//gameInPlay = false;
 	// let minutes = time/60;
-		counter = setInterval(function(){
-			// update game timer
-			time++;
-			timer.textContent = `Timer: 0.${time}`;
-		} ,1000);
+	counter = setInterval(function(){
+		// update game timer
+		time++;
+		timer.textContent = `Timer: 0.${time}`;
+	} ,1000);
 }
 
 // stop timer
@@ -189,6 +185,7 @@ resetBtn.addEventListener("click", function(){
 
 function resetMoveCounter(){
 	playerMoves = 0;
+	
 	moves.textContent = `${playerMoves} Moves`;
 	generateStars();
 
@@ -196,6 +193,7 @@ function resetMoveCounter(){
 
 function resetTimer(){
 	time = 0;
+	
 	timer.textContent = `Timer: 0.${time}`;
 	// TODO: Start game timer if game is in play
 		// if myCards.length has >= 1
