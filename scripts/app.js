@@ -69,7 +69,7 @@ function generateCards(){
 
 // create star items
 function generateStars(){
-	if(stars.childElementCount > 3){
+	if(stars.childElementCount >= 3){
 		return null;
 	} else {	
 		for(let s = 0; s < starCount; s++){
