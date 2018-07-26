@@ -8,28 +8,54 @@ let gameInPlay = true; // start game
 let counter; // setInterval, game timer
 let playerMoves = 0;
 const starCount = 3; // total number of stars
-const iconClassList = [ "far fa-gem", "far fa-gem",
-						"far fa-paper-plane", "far fa-paper-plane",
-						"fa fa-anchor", "fa fa-anchor",
-						"fa fa-bolt", "fa fa-bolt",
-						"fa fa-cube", "fa fa-cube",
-						"fa fa-anchor", "fa fa-anchor",
-						"fa fa-leaf", "fa fa-leaf",
-						"fa fa-bicycle", "fa fa-bicycle"
-					  ];
+const icons = [ "far fa-gem", "far fa-gem",
+				"far fa-paper-plane", "far fa-paper-plane",
+				"fa fa-anchor", "fa fa-anchor",
+				"fa fa-bolt", "fa fa-bolt",
+				"fa fa-cube", "fa fa-cube",
+				"fa fa-anchor", "fa fa-anchor",
+				"fa fa-leaf", "fa fa-leaf",
+				"fa fa-bicycle", "fa fa-bicycle"
+			  ];
 
 const deck_o_cards = document.getElementsByClassName("card"); 
-const shuffledCards = Array.from(shuffle(deck_o_cards));
 
-console.log(shuffledCards);
+// init game
+window.onload = function(){
+	resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
+	timer.insertAdjacentText("beforeend","Timer: 0.00");	
+	
+		shuffle(icons);
+		generateCards();
+		generateStars();
 
-resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
-timer.insertAdjacentText("beforeend","Timer: 0.00");					
+	// event listener for card deck
+	deck.addEventListener("click", function(){	
+		const cardTarget = event.target;
+	
+		open(cardTarget);
+		matchCards();
+		gameMovesCounter(myCards);
+	}, false);
 
-// generate elements for game board
+	//event listener for reset game  
+	resetBtn.addEventListener("click", function(){
+		if(playerMoves === 0 && counter === 0){
+			return null;	
+		} else if(playerMoves >= 1 || counter >= 1){
+			resetDeck();
+			resetMoveCounter();
+			stopTimer();
+			shuffle(icons);
+		}
+
+	}, false);
+
+}
+
 function generateCards(){
-	// loop thru and create cards	
-	for(let icon of iconClassList){
+	// loop thru and create cards, icons, and classes	
+	for(let icon of icons){
 		let cardHTML = document.createElement("li");
 
 		deck.appendChild(cardHTML);
@@ -39,32 +65,25 @@ function generateCards(){
 		cardHTML.innerHTML = `<i class="${icon}"> </i>`
 								
 	}
-
 }
 
-generateCards();
-
 // create star items
-function generateStars(){	
-	for(let s = 0; s < starCount; s++){
-		let starHTML = document.createElement("li");
-		let starIcon = document.createElement("i");
-			stars.appendChild(starHTML);
-		for(let i = 0; i < starCount; i++){
-			starHTML.appendChild(starIcon);
-			starIcon.classList.add("fa", "fa-star");
+function generateStars(){
+	if(stars.childElementCount > 3){
+		return null;
+	} else {	
+		for(let s = 0; s < starCount; s++){
+			let starHTML = document.createElement("li");
+			let starIcon = document.createElement("i");
+				stars.appendChild(starHTML);
+		
+			for(let i = 0; i < starCount; i++){
+				starHTML.appendChild(starIcon);
+				starIcon.classList.add("fa", "fa-star");
+			} 
 		}
 	}
 }
-generateStars();
-
-// event listener for card deck
-deck.addEventListener("click", function(){
-	const cardTarget = event.target;
-		open(cardTarget);
-		//matchCards();
-		gameMovesCounter(myCards);
-}, false);
 
 // When clicked, open/show the card
 function open(cardTarget){		
@@ -82,7 +101,7 @@ function matchCards(){
 	myCards = [];
 	
 	// If card is open, add to array 			
-	for(let card of shuffledCards){
+	for(let card of deck_o_cards){
 		if(card.classList.contains("open") && card.classList.contains("show")){
 			myCards.push(card);
 		}
@@ -137,7 +156,7 @@ function gameMovesCounter(){
 	// remove a star
 	if(playerMoves === 8 || playerMoves === 16 || playerMoves === 20){
 		stars.querySelector("li").remove();
-	}else if(stars.querySelector("li") === null){
+	}else if(stars.childElementCount === 0){
 		// TODO: fix condition for no stars
 		console.log("there's no more stars!");
 
@@ -172,17 +191,6 @@ function endGame(){
 			// add option to restart the game
 }
 
-// reset game event listener
-resetBtn.addEventListener("click", function(){
-	resetDeck();
-	resetMoveCounter();
-	stopTimer();
-	//shuffle(deck_o_cards);
-
-		
-
-}, false);
-
 function resetMoveCounter(){
 	playerMoves = 0;
 	
@@ -203,6 +211,7 @@ function resetTimer(){
 
 function resetDeck(){
 	myCards = [];
+	resetTimer();
 
 }
 
