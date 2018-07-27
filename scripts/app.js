@@ -3,12 +3,17 @@ const deck = document.querySelector(".deck");
 const timer = document.querySelector(".timer");
 const moves = document.querySelector(".moves");
 const stars = document.querySelector(".stars");
-const resetBtn = document.querySelector("#resetBtn");
 const modal = document.querySelector("#modal");
-const modalBtn = document.querySelector(".modelbtn");
+const modal_content = document.querySelector(".modal-content");
+const resetBtn = document.querySelector("#resetBtn");
+const modal_close = document.querySelector(".modal-close");
+
+
 let gameInPlay = true; // start game
-let counter; // setInterval, game timer
+let counter; // setInterval, game timers
+let time = 0;
 let playerMoves = 0;
+
 const starCount = 3; // total number of stars
 const icons = [ "far fa-gem", "far fa-gem",
 				"far fa-paper-plane", "far fa-paper-plane",
@@ -132,7 +137,7 @@ function close(myCards){
 
 // start timer
 function startTimer(){
-	let time = 0;
+	time = 0;
 	
 	//gameInPlay = false;
 	// let minutes = time/60;
@@ -183,7 +188,14 @@ function shuffle(array){
 // TODO: End game
 function endGame(){
 	// if all cards has match
-		// do not add open/show
+
+	for(card of deck_o_cards){
+		if(card.classList.contains("match")){
+			// display modal
+			console.log("Display Modal");
+		}
+	}
+	// do not add open/show
 	// gameInPlay = false;
 		// stop game timer
 		// stop move counter
@@ -194,6 +206,21 @@ function endGame(){
 			// add option to restart the game
 }
 
+
+
+modal_content.innerHTML = `Congratulations!<br>Here are your stats: <br>Stars: ${starCount}, Moves: ${playerMoves}, and Time: ${time}`;
+
+
+
+
+
+
+
+
+
+
+
+
 function resetMoveCounter(){
 	playerMoves = 0;
 	
@@ -203,7 +230,7 @@ function resetMoveCounter(){
 }
 
 function resetTimer(){
-	time = 0;
+	time;
 	
 	timer.textContent = `Timer: 0.${time}`;
 	// TODO: Start game timer if game is in play
