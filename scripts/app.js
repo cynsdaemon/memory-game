@@ -4,6 +4,8 @@ const timer = document.querySelector(".timer");
 const moves = document.querySelector(".moves");
 const stars = document.querySelector(".stars");
 const resetBtn = document.querySelector("#resetBtn");
+const modal = document.querySelector("#modal");
+const modalBtn = document.querySelector(".modelbtn");
 let gameInPlay = true; // start game
 let counter; // setInterval, game timer
 let playerMoves = 0;
@@ -69,7 +71,7 @@ function generateCards(){
 
 // create star items
 function generateStars(){
-	if(stars.childElementCount >= 3){
+	if(stars.childElementCount >= starCount){
 		return null;
 	} else {	
 		for(let s = 0; s < starCount; s++){
@@ -158,7 +160,7 @@ function gameMovesCounter(){
 		stars.querySelector("li").remove();
 	}else if(stars.childElementCount === 0){
 		// TODO: fix condition for no stars
-		console.log("there's no more stars!");
+		return null;
 
 	}
 }
@@ -180,7 +182,8 @@ function shuffle(array){
 
 // TODO: End game
 function endGame(){
-	// if all cards are matched
+	// if all cards has match
+		// do not add open/show
 	// gameInPlay = false;
 		// stop game timer
 		// stop move counter
@@ -214,7 +217,6 @@ function resetDeck(){
 	resetTimer();
 
 }
-
 
 
 
