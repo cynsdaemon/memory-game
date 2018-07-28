@@ -7,12 +7,6 @@ const resetBtn = document.getElementById("resetBtn");
 const modalContent = document.querySelector(".modalContent");
 const modalBtn = document.querySelector(".modalBtn");
 const deck_o_cards = document.getElementsByClassName("card"); 
-let gameInPlay = true; // bool for start game
-let counter; // setInterval, game timers
-let time = 0;
-let playerMoves = 0;
-
-const starCount = 3; // total number of stars
 const icons = [ "far fa-gem", "far fa-gem",
 				"far fa-paper-plane", "far fa-paper-plane",
 				"fa fa-anchor", "fa fa-anchor",
@@ -21,24 +15,28 @@ const icons = [ "far fa-gem", "far fa-gem",
 				"fa fa-anchor", "fa fa-anchor",
 				"fa fa-leaf", "fa fa-leaf",
 				"fa fa-bicycle", "fa fa-bicycle"
-			  ];
-
-
+				];
+let gameInPlay; // bool for start game
+let counter; // setInterval, game timers
+let time;
+let playerMoves = 0;
+const starCount = 3; // total number of stars
 // init game
 window.onload = function(){
-	
+	gameInPlay = true;
+
 	resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
 	timer.insertAdjacentText("beforeend","Timer: 0.00");	
 	
 		shuffle(icons);
 		generateCards();
-		generateStars();
+		generateStars(starCount);
+		toggleModal();
 
-	// event listener for card deck
+		// event listener for card deck
 	deck.addEventListener("click", function(){	
 		const cardTarget = event.target;
 		
-		//startTimer();
 		open(cardTarget);
 		matchCards();
 		gameMovesCounter(myCards);
@@ -57,16 +55,14 @@ window.onload = function(){
 
 	}, false);
 
-	// event listener to close modal
+	// event listener to toggle modal
 	modalBtn.addEventListener("click", function(){
 		const modal = document.getElementById("modal");	
-		
-		modal.hidden = true;
-		
+			
+		modal.style.display = "none";			
+	
 	}, false);
-
-
-
+	
 }
 
 function generateCards(){
@@ -84,7 +80,7 @@ function generateCards(){
 }
 
 // create star items
-function generateStars(){
+function generateStars(starCount){
 	if(stars.childElementCount >= starCount){
 		return null;
 	} else {	
@@ -103,8 +99,7 @@ function generateStars(){
 
 // When clicked, open/show the card
 function open(cardTarget){			
-	if(cardTarget.tagName === "LI"){
-		gameInPlay = true;
+	if(cardTarget.tagName === "LI" && gameInPlay === true){
 		cardTarget.classList.add("open", "show");
 	} 
 }
@@ -141,7 +136,7 @@ function close(myCards){
 	}
 }
 
-// start timer
+// start game timer
 function startTimer(){
 	time = 0;
 	counter = setInterval(function(){
@@ -188,52 +183,37 @@ function shuffle(array){
     return array;
 }
 
+// if game in play = false;
 // TODO: End game
 function endGame(){
-	gameInPlay = false;
-
 	for(card of deck_o_cards) {
 		// if all cards has match
-		if(card.classList.contains("match")) {
-			console.log("All cards matched!");
+		if(card.classList.contains("match")){
+			
+			gameInPlay = false;
+			toggleModal();
+			stopTimer();
+			resetMoveCounter();
+
+			console.log("All cards matched! Game in play equals " + gameInPlay);
 		} else {
-			console.log("Game in play" + gameInPlay);
+			console.log("Game in play is " + gameInPlay);
 		}
 	}
-		// stop game timer
-		// stop move counter
-		// disable event listeners
-		// display game modal
-		displayModal();
-		// show move counter status
-			// show game timer results
-			// add option to restart the game
+
+// show button option to restart the game
+
 }
 
-function displayModal(){
-
-	if(!gameInPlay){
-		modal.hidden = false; 
-	}else {
-		modal.hidden = true;
-	
+function toggleModal(){
+	if(gameInPlay) {
+		modal.style.display = "none";
+	}else if(!gameInPlay){
+		modal.style.display = "block";
 		modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${starCount}, Moves: ${playerMoves}, and Time: ${time}`;
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 function resetMoveCounter(){
 	playerMoves = 0;
 	
@@ -243,7 +223,7 @@ function resetMoveCounter(){
 }
 
 function resetTimer(){
-	time;
+	time = 0;
 	
 	timer.textContent = `Timer: 0.${time}`;
 	// TODO: Start game timer if game is in play
