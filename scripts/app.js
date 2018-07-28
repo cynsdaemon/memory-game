@@ -62,6 +62,8 @@ window.onload = function(){
 		modal.style.display = "none";			
 	
 	}, false);
+
+	endGame();
 	
 }
 
@@ -100,6 +102,7 @@ function generateStars(starCount){
 // When clicked, open/show the card
 function open(cardTarget){			
 	if(cardTarget.tagName === "LI" && gameInPlay === true){
+
 		cardTarget.classList.add("open", "show");
 	} 
 }
@@ -142,7 +145,7 @@ function startTimer(){
 	counter = setInterval(function(){
 	// update game timer
 		time++;
-		timer.textContent = `Timer: 0.${time}`;
+		timer.textContent = `Timer: ${time}`;
 	} ,1000);
 }
 
@@ -183,8 +186,7 @@ function shuffle(array){
     return array;
 }
 
-// if game in play = false;
-// TODO: End game
+// End game
 function endGame(){
 	for(card of deck_o_cards) {
 		// if all cards has match
@@ -200,9 +202,6 @@ function endGame(){
 			console.log("Game in play is " + gameInPlay);
 		}
 	}
-
-// show button option to restart the game
-
 }
 
 function toggleModal(){
@@ -226,10 +225,6 @@ function resetTimer(){
 	time = 0;
 	
 	timer.textContent = `Timer: 0.${time}`;
-	// TODO: Start game timer if game is in play
-		// if myCards.length has >= 1
-		// or if player clicks on a cardTarget
-
 }
 
 function resetDeck(){
