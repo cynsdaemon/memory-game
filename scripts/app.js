@@ -6,10 +6,9 @@ const stars = document.querySelector(".stars");
 const resetBtn = document.getElementById("resetBtn");
 const modalContent = document.querySelector(".modalContent");
 const modalBtn = document.querySelector(".modalBtn");
-
-// Global game play stuffs
+const deck_o_cards = document.getElementsByClassName("card"); 
 let gameInPlay = true; // bool for start game
-let counter; // setInterval, game timersmodalBtn
+let counter; // setInterval, game timers
 let time = 0;
 let playerMoves = 0;
 
@@ -24,10 +23,10 @@ const icons = [ "far fa-gem", "far fa-gem",
 				"fa fa-bicycle", "fa fa-bicycle"
 			  ];
 
-const deck_o_cards = document.getElementsByClassName("card"); 
 
 // init game
 window.onload = function(){
+	
 	resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
 	timer.insertAdjacentText("beforeend","Timer: 0.00");	
 	
@@ -63,7 +62,9 @@ window.onload = function(){
 		const modal = document.getElementById("modal");	
 		
 		modal.hidden = true;
+		
 	}, false);
+
 
 
 }
@@ -189,20 +190,37 @@ function shuffle(array){
 
 // TODO: End game
 function endGame(){
-// if all cards has match
-	// do not add open/show
-	// gameInPlay = false;
+	gameInPlay = false;
+
+	for(card of deck_o_cards) {
+		// if all cards has match
+		if(card.classList.contains("match")) {
+			console.log("All cards matched!");
+		} else {
+			console.log("Game in play" + gameInPlay);
+		}
+	}
 		// stop game timer
 		// stop move counter
 		// disable event listeners
 		// display game modal
-			// show move counter status
+		displayModal();
+		// show move counter status
 			// show game timer results
 			// add option to restart the game
 }
 
+function displayModal(){
 
-modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${starCount}, Moves: ${playerMoves}, and Time: ${time}`;
+	if(!gameInPlay){
+		modal.hidden = false; 
+	}else {
+		modal.hidden = true;
+	
+		modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${starCount}, Moves: ${playerMoves}, and Time: ${time}`;
+	}
+
+}
 
 
 
