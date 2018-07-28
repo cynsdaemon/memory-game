@@ -16,15 +16,13 @@ const icons = [ "far fa-gem", "far fa-gem",
 				"fa fa-leaf", "fa fa-leaf",
 				"fa fa-bicycle", "fa fa-bicycle"
 				];
-let gameInPlay; // bool for start game
+let gameInPlay = true; // bool for start game
 let counter; // setInterval, game timers
 let time;
 let playerMoves = 0;
 const starCount = 3; // total number of stars
 // init game
 window.onload = function(){
-	gameInPlay = true;
-
 	resetBtn.insertAdjacentText("beforeend", "Restart Game"); 
 	timer.insertAdjacentText("beforeend","Timer: 0.00");	
 	
@@ -37,6 +35,7 @@ window.onload = function(){
 	deck.addEventListener("click", function(){	
 		const cardTarget = event.target;
 		
+		startTimer();
 		open(cardTarget);
 		matchCards();
 		gameMovesCounter(myCards);
@@ -51,7 +50,7 @@ window.onload = function(){
 			resetMoveCounter();
 			stopTimer();
 			shuffle(icons);
-		}
+		} 
 
 	}, false);
 
@@ -63,8 +62,6 @@ window.onload = function(){
 	
 	}, false);
 
-	endGame();
-	
 }
 
 function generateCards(){
@@ -101,10 +98,11 @@ function generateStars(starCount){
 
 // When clicked, open/show the card
 function open(cardTarget){			
-	if(cardTarget.tagName === "LI" && gameInPlay === true){
-
+	if(cardTarget.tagName === "LI"){
 		cardTarget.classList.add("open", "show");
-	} 
+	}
+	
+
 }
 
 function matchCards(){
@@ -142,6 +140,7 @@ function close(myCards){
 // start game timer
 function startTimer(){
 	time = 0;
+
 	counter = setInterval(function(){
 	// update game timer
 		time++;
@@ -186,7 +185,7 @@ function shuffle(array){
     return array;
 }
 
-// End game
+// end game
 function endGame(){
 	for(card of deck_o_cards) {
 		// if all cards has match
@@ -197,12 +196,10 @@ function endGame(){
 			stopTimer();
 			resetMoveCounter();
 
-			console.log("All cards matched! Game in play equals " + gameInPlay);
-		} else {
-			console.log("Game in play is " + gameInPlay);
 		}
 	}
 }
+endGame();
 
 function toggleModal(){
 	if(gameInPlay) {
@@ -230,6 +227,9 @@ function resetTimer(){
 function resetDeck(){
 	myCards = [];
 	resetTimer();
+	for(let card of deck_o_cards) {
+		card.classList.remove("match");
+	}
 
 }
 
