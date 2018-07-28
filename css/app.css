@@ -139,7 +139,7 @@ h1 {
 
 }
 
-.modalContent {
+.modalContent{
     text-align: center;
     color: #fff;
     font-size: 25px;
@@ -153,4 +153,11 @@ h1 {
     padding-left: 10px;
 }
 
- 
+.replayMod {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding-top: 5px;
+    color: #2e3d49;
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ const stars = document.querySelector(".stars");
 const resetBtn = document.getElementById("resetBtn");
 const modalContent = document.querySelector(".modalContent");
 const modalBtn = document.querySelector(".modalBtn");
+const replayMod = document.querySelector(".replayMod");
 const deck_o_cards = document.getElementsByClassName("card"); 
 const icons = [ "far fa-gem", "far fa-gem",
 				"far fa-paper-plane", "far fa-paper-plane",
@@ -35,10 +36,15 @@ window.onload = function(){
 	deck.addEventListener("click", function(){	
 		const cardTarget = event.target;
 		
-		startTimer();
 		open(cardTarget);
 		matchCards();
 		gameMovesCounter(myCards);
+
+		if(gameInPlay && cardTarget.tagName === "LI"){
+			startTimer();
+			gameInPlay = false;
+			
+		}
 	}, false);
 
 	//event listener for reset game  
@@ -50,8 +56,8 @@ window.onload = function(){
 			resetMoveCounter();
 			stopTimer();
 			shuffle(icons);
+			startTimer();
 		} 
-
 	}, false);
 
 	// event listener to toggle modal
@@ -61,6 +67,10 @@ window.onload = function(){
 		modal.style.display = "none";			
 	
 	}, false);
+
+	replayMod.addEventListener("click", function(){
+		window.location = " ";
+	});
 
 }
 
@@ -101,8 +111,6 @@ function open(cardTarget){
 	if(cardTarget.tagName === "LI"){
 		cardTarget.classList.add("open", "show");
 	}
-	
-
 }
 
 function matchCards(){
@@ -144,8 +152,12 @@ function startTimer(){
 	counter = setInterval(function(){
 	// update game timer
 		time++;
+		
 		timer.textContent = `Timer: ${time}`;
+		
 	} ,1000);
+
+
 }
 
 // stop timer
@@ -185,36 +197,20 @@ function shuffle(array){
     return array;
 }
 
-// end game
-function endGame(){
-	for(card of deck_o_cards) {
-		// if all cards has match
-		if(card.classList.contains("match")){
-			
-			gameInPlay = false;
-			toggleModal();
-			stopTimer();
-			resetMoveCounter();
-
-		}
-	}
-}
-endGame();
-
 function toggleModal(){
 	if(gameInPlay) {
 		modal.style.display = "none";
 	}else if(!gameInPlay){
 		modal.style.display = "block";
 		modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${starCount}, Moves: ${playerMoves}, and Time: ${time}`;
-	}
+	} 
 }
 	
 function resetMoveCounter(){
 	playerMoves = 0;
 	
 	moves.textContent = `${playerMoves} Moves`;
-	generateStars();
+	generateStars(starCount);
 
 }
 
@@ -227,13 +223,24 @@ function resetTimer(){
 function resetDeck(){
 	myCards = [];
 	resetTimer();
-	for(let card of deck_o_cards) {
+	for(let card of deck_o_cards){
 		card.classList.remove("match");
 	}
-
 }
 
+// end game
+function endGame(){
+	for(card of deck_o_cards){
+		// if all cards has match
+		if(card.classList.contains("match")){
 
+			gameInPlay = false;
+			toggleModal();
+			stopTimer();
+			resetMoveCounter();
+		}
+	}
+}
 
-
+endGame();
  
