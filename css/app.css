@@ -90,7 +90,7 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
-    display: inline-flex;
+    display: flex;
     flex-flow: row;
     justify-content: space-between;
 }
@@ -98,17 +98,14 @@ h1 {
 .score-panel .stars {
     margin: 0;
     padding: 0;
-    /* display: inline-block; */
     margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
     list-style: none;
-    /* display: inline-block; */
 }
 
 .score-panel .restart {
-    /* float: right; */
     cursor: pointer;
 }
 
@@ -131,28 +128,24 @@ h1 {
  */
 
 #modal {
-    position: fixed;
-    z-index: 1;
     width: 540px;
     height: 230px;
-    overflow: auto;
     background-color: #02b3e4;
     border-radius: 10px;
+    position: fixed;
+    z-index: 1;
+
 
 }
 
-#modal {
-    display: none;
-}
-
-.modal-content {
+.modalContent {
     text-align: center;
     color: #fff;
     font-size: 25px;
 
 }
 
-.modal-close {
+.modalBtn {
     color: #2e3d49;
     cursor: pointer;
     font-size: 33px;

@@ -3,14 +3,13 @@ const deck = document.querySelector(".deck");
 const timer = document.querySelector(".timer");
 const moves = document.querySelector(".moves");
 const stars = document.querySelector(".stars");
-const modal = document.querySelector("#modal");
-const modal_content = document.querySelector(".modal-content");
-const resetBtn = document.querySelector("#resetBtn");
-const modal_close = document.querySelector(".modal-close");
+const resetBtn = document.getElementById("resetBtn");
+const modalContent = document.querySelector(".modalContent");
+const modalBtn = document.querySelector(".modalBtn");
 
-
-let gameInPlay = true; // start game
-let counter; // setInterval, game timers
+// Global game play stuffs
+let gameInPlay = true; // bool for start game
+let counter; // setInterval, game timersmodalBtn
 let time = 0;
 let playerMoves = 0;
 
@@ -39,7 +38,8 @@ window.onload = function(){
 	// event listener for card deck
 	deck.addEventListener("click", function(){	
 		const cardTarget = event.target;
-	
+		
+		//startTimer();
 		open(cardTarget);
 		matchCards();
 		gameMovesCounter(myCards);
@@ -57,6 +57,14 @@ window.onload = function(){
 		}
 
 	}, false);
+
+	// event listener to close modal
+	modalBtn.addEventListener("click", function(){
+		const modal = document.getElementById("modal");	
+		
+		modal.hidden = true;
+	}, false);
+
 
 }
 
@@ -93,13 +101,10 @@ function generateStars(){
 }
 
 // When clicked, open/show the card
-function open(cardTarget){		
+function open(cardTarget){			
 	if(cardTarget.tagName === "LI"){
+		gameInPlay = true;
 		cardTarget.classList.add("open", "show");
-		if(gameInPlay){
-			startTimer();		
-			gameInPlay = false;
-		}	
 	} 
 }
 
@@ -138,11 +143,8 @@ function close(myCards){
 // start timer
 function startTimer(){
 	time = 0;
-	
-	//gameInPlay = false;
-	// let minutes = time/60;
 	counter = setInterval(function(){
-		// update game timer
+	// update game timer
 		time++;
 		timer.textContent = `Timer: 0.${time}`;
 	} ,1000);
@@ -187,14 +189,7 @@ function shuffle(array){
 
 // TODO: End game
 function endGame(){
-	// if all cards has match
-
-	for(card of deck_o_cards){
-		if(card.classList.contains("match")){
-			// display modal
-			console.log("Display Modal");
-		}
-	}
+// if all cards has match
 	// do not add open/show
 	// gameInPlay = false;
 		// stop game timer
@@ -207,8 +202,8 @@ function endGame(){
 }
 
 
+modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${starCount}, Moves: ${playerMoves}, and Time: ${time}`;
 
-modal_content.innerHTML = `Congratulations!<br>Here are your stats: <br>Stars: ${starCount}, Moves: ${playerMoves}, and Time: ${time}`;
 
 
 
