@@ -9,14 +9,14 @@ const modalBtn = document.querySelector(".modalBtn");
 const replayMod = document.querySelector(".replayMod");
 const deck_o_cards = document.getElementsByClassName("card"); 
 const icons = [ "far fa-gem", "far fa-gem",
-				"far fa-paper-plane", "far fa-paper-plane",
-				"fa fa-anchor", "fa fa-anchor",
-				"fa fa-bolt", "fa fa-bolt",
-				"fa fa-cube", "fa fa-cube",
-				"fas fa-bomb", "fas fa-bomb",
-				"fa fa-leaf", "fa fa-leaf",
-				"fa fa-bicycle", "fa fa-bicycle"
-				];
+		"far fa-paper-plane", "far fa-paper-plane",
+		"fa fa-anchor", "fa fa-anchor",
+		"fa fa-bolt", "fa fa-bolt",
+		"fa fa-cube", "fa fa-cube",
+		"fas fa-bomb", "fas fa-bomb",
+		"fa fa-leaf", "fa fa-leaf",
+		"fa fa-bicycle", "fa fa-bicycle"
+	      ];
 let counter; // setInterval, game timers
 let starCount = 3; // total number of stars
 let playerMoves = 0;
