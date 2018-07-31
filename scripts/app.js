@@ -232,15 +232,6 @@ function resetDeck(){
 	}
 }
 
-function resetGame(){
-	resetDeck();
-	resetMoveCounter();
-	shuffle(icons);
-	stopTimer();
-	resetTimer();
-	startTimer();
-}
-
 // end game
 function endGame(){ 
 	stopTimer();
