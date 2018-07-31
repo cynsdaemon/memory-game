@@ -22,8 +22,6 @@ let starCount = 3; // total number of stars
 let playerMoves = 0;
 let gameInPlay;
 let time;
-let matchedCards = 0;
-const TOTAL_CARDS = 8;
 
 // window onload
 window.onload = function(){
@@ -123,7 +121,7 @@ function close(myCards){
 		setTimeout(function(){
 			myCards[0].classList.remove("open", "show");
 			myCards[1].classList.remove("open", "show");
-			myCards = [];			
+			myCards = [];		
 		}, 1000);
 	}
 }
@@ -139,20 +137,16 @@ function checkMatchCards(){
 			myCards.push(card);
 		}
 		// If cards match, 
-		else if(myCards.length === 2 && myCards[0].firstElementChild.classList.value === myCards[1].firstElementChild.classList.value){
+		if(myCards.length === 2 && myCards[0].firstElementChild.classList.value === myCards[1].firstElementChild.classList.value){
 			myCards[0].classList.add("match");
-			myCards[1].classList.add("match");			
-		}
-		// add matched pairs to count
-		else if(myCards.length === 2 && myCards[0].classList.contains("match") && myCards[1].classList.contains("match")){
-			matchedCards++;
-		}
-		else if(matchedCards === TOTAL_CARDS){
-			endGame();
+			myCards[1].classList.add("match");
 		}
 		else{
 			close(myCards);
-		}		
+		}
+
+		// check to see if all cards are matched
+			// endGame()
 	}
 }
 
@@ -252,5 +246,6 @@ function endGame(){
 	stopTimer();
 	toggleModal();
 }
+
 
 
