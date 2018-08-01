@@ -161,3 +161,7 @@ h1 {
     color: #2e3d49;
     cursor: pointer;
 }
+
+.disabled {
+    pointer-events: none;
+}
