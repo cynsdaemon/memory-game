@@ -149,7 +149,7 @@ function checkMatchCards() {
             allCards.push(card);
         }
 
-        // if all cards are matched, end game
+        // TODO: fix if all cards are matched, end game
         if (allCards.length === icons.length) {
             endGame();
         } else {
