@@ -8,14 +8,23 @@ const modalContent = document.querySelector(".modalContent");
 const modalBtn = document.querySelector(".modalBtn");
 const replayMod = document.querySelector(".replayMod");
 const deck_o_cards = document.getElementsByClassName("card");
-const icons = ["far fa-gem", "far fa-gem", "far fa-paper-plane", "far fa-paper-plane", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fas fa-bomb", "fas fa-bomb", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle"];
+const icons = ["far fa-gem", "far fa-gem", 
+                "far fa-paper-plane", "far fa-paper-plane", 
+                "fa fa-anchor", "fa fa-anchor", 
+                "fa fa-bolt", "fa fa-bolt", 
+                "fa fa-cube", "fa fa-cube", 
+                "fas fa-bomb", "fas fa-bomb", 
+                "fa fa-leaf", "fa fa-leaf", 
+                "fa fa-bicycle", "fa fa-bicycle"];
 
 // Global varibles:
-let allCards = [];
-let cardsInPlay = [];
-let counter;
+let cardsInPlay;
+let allCards = 0;
+
 // setInterval, game timers
+let counter;
 let starCount = 3;
+
 // total number of stars
 let playerMoves = 0;
 let gameInPlay;
@@ -27,7 +36,7 @@ window.onload = function() {
     resetBtn.insertAdjacentText("beforeend", "Restart Game");
     timer.insertAdjacentText("beforeend", "Timer: 0.00");
 
-    shuffle(icons);
+    //shuffle(icons);
     generateCards();
     generateStars(starCount);
 
@@ -36,7 +45,7 @@ window.onload = function() {
         const cardTarget = event.target;
 
         open(cardTarget);
-        checkMatchCards();
+        checkMatchedCards();
         gameMovesCounter(cardsInPlay);
 
         if (gameInPlay && cardTarget.tagName === "LI") {
@@ -112,45 +121,53 @@ function open(cardTarget) {
         cardTarget.classList.add("open", "show");
     }
 
-    if (cardTarget.tagName === "LI" && cardTarget.classList.contains("match")) {
-        !cardTarget.classList.add("open", "show");
-    }
-
 }
 
 function close(cardsInPlay) {
     if (cardsInPlay.length === 2) {
-        // close cards
+       
+        // close cards, after x timeout 
         setTimeout(function() {
             cardsInPlay[0].classList.remove("open", "show");
             cardsInPlay[1].classList.remove("open", "show");
             cardsInPlay = [];
-        }, 500);
+        }, 1000);
     }
 }
 
 // check cards for match
-function checkMatchCards() {
+function checkMatchedCards() {
+
+    const ALL_MATCHES = 9;
+    cardsInPlay = [];   
 
     // If card is open, add to array 			
-    for (let card of deck_o_cards) {
-        if (card.classList.contains("open") && card.classList.contains("show")) {
+    for (let card of deck_o_cards){
+        
+        if (card.classList.contains("open") && card.classList.contains("show")){
             cardsInPlay.push(card);
+
+        } else if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
+            // If cards match, add match class 
+            cardsInPlay[0].classList.add("match", "disabled");
+            cardsInPlay[1].classList.add("match", "disabled");
+
+            // empty array           
+            cardsInPlay = [];
+
+            // add matched cards to allCards array
+            allCards++;
+
+
+        } else if (cardsInPlay.length === 2 && cardsInPlay[0].classList.contains("match") && cardsInPlay[1].classList.contains("match")) {
+
+            // remove open, show
+            cardsInPlay[0].classList.remove("open", "show");
+            cardsInPlay[1].classList.remove("open", "show");
         }
 
-        // If cards match, add match class 
-        if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
-            cardsInPlay[0].classList.add("match");
-            cardsInPlay[1].classList.add("match");
-        }
-
-        // If match, push to allCards array
-        if (cardsInPlay.length === 2 && cardsInPlay[0].classList.contains("match") && cardsInPlay[1].classList.contains("match")) {
-            allCards.push(card);
-        }
-
-        // TODO: fix if all cards are matched, end game
-        if (allCards.length === icons.length) {
+        // TODO: If all cards are matched, end game
+        if (allCards === ALL_MATCHES) {
             endGame();
         } else {
             close(cardsInPlay);
@@ -244,4 +261,8 @@ function endGame() {
     stopTimer();
     toggleModal();
     deck.classList.add("disabled");
+    resetBtn.classList.add("disabled");
 }
+
+
+
