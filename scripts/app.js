@@ -138,7 +138,7 @@ function close(cardsInPlay) {
 // check cards for match
 function checkMatchedCards() {
 
-    const ALL_MATCHES = 9;
+    const ALL_MATCHES = 8;
     cardsInPlay = [];   
 
     // If card is open, add to array 			
