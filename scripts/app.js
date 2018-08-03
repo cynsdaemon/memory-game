@@ -19,14 +19,14 @@ const icons = ["far fa-gem", "far fa-gem",
 
 // Global varibles:
 let cardsInPlay;
-let allCards = 0;
+let matchcounter = 0;
 
 // setInterval, game timers
 let counter;
-let starCount = 3;
+let starcount = 3;
 
 // total number of stars
-let playerMoves = 0;
+let playermoves = 0;
 let gameInPlay;
 let time;
 
@@ -38,7 +38,7 @@ window.onload = function() {
 
     //shuffle(icons);
     generateCards();
-    generateStars(starCount);
+    generateStars(starcount);
 
     // event listener for card deck
     deck.addEventListener("click", function() {
@@ -57,9 +57,9 @@ window.onload = function() {
 
     //event listener for reset game  
     resetBtn.addEventListener("click", function() {
-        if (playerMoves === 0 && counter === 0) {
+        if (playermoves === 0 && counter === 0) {
             return null;
-        } else if (playerMoves >= 1 || counter >= 1) {
+        } else if (playermoves >= 1 || counter >= 1) {
             resetDeck();
             resetMoveCounter();
             shuffle(icons);
@@ -98,18 +98,18 @@ function generateCards() {
 }
 
 // create star items
-function generateStars(starCount) {
-    if (stars.childElementCount >= starCount) {
+function generateStars(starcount) {
+    if (stars.childElementCount >= starcount) {
         return null;
     } else {
-        for (let s = 0; s < starCount; s++) {
+        for (let s = 0; s < starcount; s++) {
             let starHTML = document.createElement("li");
-            let starIcon = document.createElement("i");
+            let staricon = document.createElement("i");
             stars.appendChild(starHTML);
 
-            for (let i = 0; i < starCount; i++) {
-                starHTML.appendChild(starIcon);
-                starIcon.classList.add("fa", "fa-star");
+            for (let i = 0; i < starcount; i++) {
+                starHTML.appendChild(staricon);
+                staricon.classList.add("fa", "fa-star");
             }
         }
     }
@@ -142,7 +142,7 @@ function checkMatchedCards() {
     cardsInPlay = [];   
 
     // If card is open, add to array 			
-    for (let card of deck_o_cards){
+    for (let card of deck_o_cards) {
         
         if (card.classList.contains("open") && card.classList.contains("show")){
             cardsInPlay.push(card);
@@ -155,20 +155,20 @@ function checkMatchedCards() {
             // empty array           
             cardsInPlay = [];
 
-            // add matched cards to allCards array
-            allCards++;
-
+            // increment match counter
+            matchcounter++;
 
         } else if (cardsInPlay.length === 2 && cardsInPlay[0].classList.contains("match") && cardsInPlay[1].classList.contains("match")) {
 
             // remove open, show
             cardsInPlay[0].classList.remove("open", "show");
             cardsInPlay[1].classList.remove("open", "show");
-        }
-
-        // TODO: If all cards are matched, end game
-        if (allCards === ALL_MATCHES) {
+        
+        } else if (matchcounter === ALL_MATCHES) {
+            
+            // when all cards are matched, end game
             endGame();
+        
         } else {
             close(cardsInPlay);
         }
@@ -198,11 +198,11 @@ function stopTimer() {
 function gameMovesCounter(cardsInPlay) {
     if (cardsInPlay.length === 2) {
         // update move counter
-        playerMoves++;
-        moves.textContent = `${playerMoves} Moves`;
+        playermoves++;
+        moves.textContent = `${playermoves} Moves`;
     }
     // remove a star
-    if (playerMoves === 8 || playerMoves === 16 || playerMoves === 15) {
+    if (playermoves === 8 || playermoves === 16 || playermoves === 15) {
         stars.querySelector("li").remove();
     } else if (stars.childElementCount === 0) {
         // TODO: fix condition for no stars
@@ -231,16 +231,16 @@ function toggleModal() {
         modal.style.display = "none";
     } else if (!gameInPlay) {
         modal.style.display = "block";
-        modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${starCount}, Moves: ${playerMoves}, and Time: ${time}`;
+        modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${starcount}, Moves: ${playermoves}, and Time: ${time}`;
     }
 }
 
 // game reset
 function resetMoveCounter() {
-    playerMoves = 0;
+    playermoves = 0;
 
-    moves.textContent = `${playerMoves} Moves`;
-    generateStars(starCount);
+    moves.textContent = `${playermoves} Moves`;
+    generateStars(starcount);
 
 }
 
