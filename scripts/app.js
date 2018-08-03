@@ -23,9 +23,10 @@ let matchcounter = 0;
 
 // setInterval, game timers
 let counter;
-let starcount = 3;
 
 // total number of stars
+let starcount = 3;
+
 let playermoves = 0;
 let gameInPlay;
 let time;
