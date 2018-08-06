@@ -61,13 +61,12 @@ window.onload = function() {
         if (playermoves === 0 && counter === 0) {
             return null;
         } else if (playermoves >= 1 || counter >= 1) {
-            resetDeck();
-            resetMoveCounter();
-            shuffle(icons);
-            stopTimer();
+            resetGame();
+            gameInPlay = true;
+        } else if (gameInPlay && deck.firstElementChild.tagName === "LI") {
             startTimer();
+            gameInPlay = false;
         }
-
     }, false);
 
     // event listener to toggle modal
@@ -100,7 +99,7 @@ function generateCards() {
 
 // create star items
 function generateStars(starcount) {
-    if (stars.childElementCount >= starcount) {
+    if (stars.childElementCount > starcount) {
         return null;
     } else {
         for (let s = 0; s < starcount; s++) {
@@ -116,7 +115,7 @@ function generateStars(starcount) {
     }
 }
 
-// Toggle cards, open/close
+// open cards
 function open(cardTarget) {
     if (cardTarget.tagName === "LI") {
         cardTarget.classList.add("open", "show");
@@ -131,7 +130,7 @@ function close(cardsInPlay) {
             cardsInPlay[0].classList.remove("open", "show");
             cardsInPlay[1].classList.remove("open", "show");
             cardsInPlay = [];
-        }, 500);
+        }, 1000);
     }
 }
 
@@ -147,9 +146,7 @@ function checkMatchedCards() {
         if (card.classList.contains("open") && card.classList.contains("show")) {
             cardsInPlay.push(card);
 
-        } 
-        
-        if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
+        } else if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
             
             // If cards match, add match class 
             cardsInPlay[0].classList.add("match", "disabled");
@@ -165,9 +162,7 @@ function checkMatchedCards() {
             // increment match counter
             matchcounter++;
 
-        } 
-        
-        if (matchcounter === ALL_MATCHES) {
+        } else if (matchcounter === ALL_MATCHES) {
             
             // when all cards are matched, end game
             endGame();
@@ -238,7 +233,7 @@ function toggleModal() {
     }
 }
 
-// game reset
+// game resets
 function resetMoveCounter() {
     playermoves = 0;
 
@@ -255,9 +250,21 @@ function resetTimer() {
 function resetDeck() {
     cardsInPlay = [];
     for (let card of deck_o_cards) {
-        card.classList.remove("match");
+        card.classList.remove("match", "disabled");
+        card.classList.remove("open", "show");
+
     }
 }
+
+ function resetGame(){
+    matchcounter = 0;
+    resetDeck();    
+    shuffle(icons);
+    resetMoveCounter();
+    stopTimer();
+    resetTimer();
+ } 
+
 
 // end game
 function endGame() {
