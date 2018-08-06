@@ -37,7 +37,7 @@ window.onload = function() {
     resetBtn.insertAdjacentText("beforeend", "Restart Game");
     timer.insertAdjacentText("beforeend", "Timer: 0.00");
 
-    //shuffle(icons);
+    shuffle(icons);
     generateCards();
     generateStars(starcount);
 
@@ -124,10 +124,9 @@ function open(cardTarget) {
 
 }
 
+// close cards, after x timeout 
 function close(cardsInPlay) {
-    if (cardsInPlay.length === 2) {
-       
-        // close cards, after x timeout 
+    if (cardsInPlay.length === 2) {        
         setTimeout(function() {
             cardsInPlay[0].classList.remove("open", "show");
             cardsInPlay[1].classList.remove("open", "show");
@@ -145,13 +144,18 @@ function checkMatchedCards() {
     // If card is open, add to array 			
     for (let card of deck_o_cards) {
         
-        if (card.classList.contains("open") && card.classList.contains("show")){
+        if (card.classList.contains("open") && card.classList.contains("show")) {
             cardsInPlay.push(card);
 
         } else if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
+            
             // If cards match, add match class 
             cardsInPlay[0].classList.add("match", "disabled");
             cardsInPlay[1].classList.add("match", "disabled");
+
+            // remove open, show
+            cardsInPlay[0].classList.remove("open", "show");
+            cardsInPlay[1].classList.remove("open", "show");
 
             // empty array           
             cardsInPlay = [];
@@ -159,12 +163,6 @@ function checkMatchedCards() {
             // increment match counter
             matchcounter++;
 
-        } else if (cardsInPlay.length === 2 && cardsInPlay[0].classList.contains("match") && cardsInPlay[1].classList.contains("match")) {
-
-            // remove open, show
-            cardsInPlay[0].classList.remove("open", "show");
-            cardsInPlay[1].classList.remove("open", "show");
-        
         } else if (matchcounter === ALL_MATCHES) {
             
             // when all cards are matched, end game
