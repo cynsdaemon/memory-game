@@ -131,7 +131,7 @@ function close(cardsInPlay) {
             cardsInPlay[0].classList.remove("open", "show");
             cardsInPlay[1].classList.remove("open", "show");
             cardsInPlay = [];
-        }, 1000);
+        }, 500);
     }
 }
 
@@ -147,7 +147,9 @@ function checkMatchedCards() {
         if (card.classList.contains("open") && card.classList.contains("show")) {
             cardsInPlay.push(card);
 
-        } else if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
+        } 
+        
+        if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
             
             // If cards match, add match class 
             cardsInPlay[0].classList.add("match", "disabled");
@@ -163,7 +165,9 @@ function checkMatchedCards() {
             // increment match counter
             matchcounter++;
 
-        } else if (matchcounter === ALL_MATCHES) {
+        } 
+        
+        if (matchcounter === ALL_MATCHES) {
             
             // when all cards are matched, end game
             endGame();
