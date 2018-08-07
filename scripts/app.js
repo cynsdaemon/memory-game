@@ -25,7 +25,7 @@ let matchcounter = 0;
 let counter;
 
 // total number of stars
-let starcount = 3;
+const starcount = 3;
 
 let playermoves = 0;
 let gameInPlay;
@@ -58,15 +58,7 @@ window.onload = function() {
 
     //event listener for reset game  
     resetBtn.addEventListener("click", function() {
-        if (playermoves === 0 && counter === 0) {
-            return null;
-        } else if (playermoves >= 1 || counter >= 1) {
-            resetGame();
-            gameInPlay = true;
-        } else if (gameInPlay && deck.firstElementChild.tagName === "LI") {
-            startTimer();
-            gameInPlay = false;
-        }
+        replay();
     }, false);
 
     // event listener to toggle modal
@@ -78,7 +70,7 @@ window.onload = function() {
     }, false);
 
     replayMod.addEventListener("click", function() {
-        window.location = " ";
+        replay();
     });
 
 }
@@ -99,7 +91,7 @@ function generateCards() {
 
 // create star items
 function generateStars(starcount) {
-    if (stars.childElementCount > starcount) {
+    if (stars.childElementCount >= starcount || stars.childElementCount === starcount) {
         return null;
     } else {
         for (let s = 0; s < starcount; s++) {
@@ -145,9 +137,9 @@ function checkMatchedCards() {
         
         if (card.classList.contains("open") && card.classList.contains("show")) {
             cardsInPlay.push(card);
-
-        } else if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
-            
+        } 
+        
+        if (cardsInPlay.length === 2 && cardsInPlay[0].firstElementChild.classList.value === cardsInPlay[1].firstElementChild.classList.value) {
             // If cards match, add match class 
             cardsInPlay[0].classList.add("match", "disabled");
             cardsInPlay[1].classList.add("match", "disabled");
@@ -162,7 +154,9 @@ function checkMatchedCards() {
             // increment match counter
             matchcounter++;
 
-        } else if (matchcounter === ALL_MATCHES) {
+        } 
+        
+        if (matchcounter === ALL_MATCHES) {
             
             // when all cards are matched, end game
             endGame();
@@ -200,12 +194,11 @@ function gameMovesCounter(cardsInPlay) {
         moves.textContent = `${playermoves} Moves`;
     }
     // remove a star
-    if (playermoves === 8 || playermoves === 16 || playermoves === 15) {
+    if (playermoves === 8 || playermoves === 16 || playermoves === 25) {
         stars.querySelector("li").remove();
-    } else if (stars.childElementCount === 0) {
-        // TODO: fix condition for no stars
-        console.log("There are no more star elements");
-
+    } else if (stars.childElementCount === 0 && playermoves === 26) {
+        // like seriously, 20+ moves and still no win? just...
+        endGame();
     }
 }
 
@@ -238,8 +231,6 @@ function resetMoveCounter() {
     playermoves = 0;
 
     moves.textContent = `${playermoves} Moves`;
-    generateStars(starcount);
-
 }
 
 function resetTimer() {
@@ -265,6 +256,18 @@ function resetDeck() {
     resetTimer();
  } 
 
+ function replay(){
+    if (playermoves === 0 && counter === 0) {
+        return null;
+    } else if (playermoves >= 1 || counter >= 1) {
+        resetGame();
+        generateStars(starcount);
+        gameInPlay = true;
+    } else if (gameInPlay && deck.firstElementChild.tagName === "LI") {
+        startTimer();
+        gameInPlay = false;
+    }
+}
 
 // end game
 function endGame() {
