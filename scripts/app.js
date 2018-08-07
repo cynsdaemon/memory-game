@@ -262,6 +262,7 @@ function resetDeck() {
     } else if (playermoves >= 1 || counter >= 1) {
         resetGame();
         generateStars(starcount);
+
         gameInPlay = true;
     } else if (gameInPlay && deck.firstElementChild.tagName === "LI") {
         startTimer();
@@ -273,8 +274,6 @@ function resetDeck() {
 function endGame() {
     stopTimer();
     toggleModal();
-    deck.classList.add("disabled");
-    resetBtn.classList.add("disabled");
 }
 
 
