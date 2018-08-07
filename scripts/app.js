@@ -193,7 +193,7 @@ function gameMovesCounter(cardsInPlay) {
         moves.textContent = `${playermoves} Moves`;
     }
 
-    if (playermoves === 16 || playermoves === 24) {
+    if (playermoves === 16) {
         removeStar();
     }
 }
@@ -204,6 +204,7 @@ function removeStar(){
     } else if(stars.childElementCount === 1) {
         return null;
     }
+
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -222,11 +223,12 @@ function shuffle(array) {
 }
 
 function toggleModal() {
+    let rating = stars.childElementCount;
     if (gameInPlay) {
         modal.style.display = "none";
     } else if (!gameInPlay) {
         modal.style.display = "block";
-        modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${starcount}, Moves: ${playermoves}, and Time: ${time}`;
+        modalContent.innerHTML = `Congratulations! <br> Here are your stats: <br> Stars: ${rating}, Moves: ${playermoves}, and Time: ${time}`;
     }
 }
 
