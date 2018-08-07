@@ -9,7 +9,7 @@ Instructions
 
 You may view the live project [here](https://cynsdaemon.github.io/memory-game/). Note: You will need to use a modern browser and have JavaScript enabled.
 
-**To play:** A deck is made up of 16 cards. All cards have a matching pair hidden somewhere in the deck. The game and the game's timer starts when a player begins clicking on a card to flip it open. Each opened pair counts as a single move. The more moves a player makes, the less their final star rating (3 stars  :star: :star: :star: total) will be.  Find all matching pairs to win the game! :sunglasses:
+**To play:** A deck is made up of 16 cards. All cards have a matching pair hidden somewhere in the deck. The game and the game's timer starts when a player begins clicking on a card to flip it open. Each opened pair counts as a single move. The less moves a player makes, the greater their final star rating :star: :star: :star: will be.  Find all matching pairs to win the game! :sunglasses:
 
 Resources
 --------
