@@ -1,13 +1,15 @@
 
-# Memory Game 
+# Memory Game
 --------
 
-This repo serves as a home for the 'Memory Game' project in the Udacity [Frontend Web Development](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) Nanodegree. 
+This repo serves as a home for the 'Memory Game' project in the Udacity [Frontend Web Development](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) Nanodegree.
 
 Instructions
 --------
 
-You may view the live project [here](https://cynsdaemon.github.io/memory-game/). Note: You will need to use a modern browser and have JavaScript enabled. **To play:** A deck is made up of 16 cards. Each card has its matched pair hidden somewhere in the deck. Start the game by clicking on a card to flip it open. This starts the game's timer as well, and each move counts against your final star rating (3 stars total). Find all matching pairs to win the game!
+You may view the live project [here](https://cynsdaemon.github.io/memory-game/). Note: You will need to use a modern browser and have JavaScript enabled.
+
+**To play:** A deck is made up of 16 cards. All cards have a matching pair hidden somewhere in the deck. The game and the game's timer starts when a player begins clicking on a card to flip it open. Each opened pair counts as a single move. The more moves a player makes, the less their final star rating (3 stars  :star: :star: :star: total) will be.  Find all matching pairs to win the game! :sunglasses:
 
 Resources
 --------
@@ -15,11 +17,11 @@ Resources
 This project uses the following guides and libraries:
 
 - Frontend Nanodegree [Style Guides](https://github.com/udacity/frontend-nanodegree-styleguide)
-- Project Grading Rubric 
+- Project Grading Rubric
 - This repository contains starter code from Udacity's [Memory Game Project](https://github.com/udacity/fend-project-memory-game)
-- Icons courtesy of Font Awesome [CC BY 4.0 License](https://fontawesome.com/license). Learn more about [Font Awesome](https://fontawesome.com/) and its [repository](https://github.com/FortAwesome/Font-Awesome). 
+- Icons courtesy of Font Awesome [CC BY 4.0 License](https://fontawesome.com/license). Learn more about [Font Awesome](https://fontawesome.com/) and its [repository](https://github.com/FortAwesome/Font-Awesome).
 - other Memory Game fonts by [Google Fonts](https://fonts.google.com/)
-  
+
 Contributions and Feedback
 --------
 
