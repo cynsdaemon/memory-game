@@ -4,7 +4,10 @@
 
 This repo serves as a home for the 'Memory Game' project in the Udacity [Frontend Web Development](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) Nanodegree. 
 
-You may view the live project [here](https://cynsdaemon.github.io/memory-game/). Note: You will need to use a modern browser and have JavaScript enabled. 
+Instructions
+--------
+
+You may view the live project [here](https://cynsdaemon.github.io/memory-game/). Note: You will need to use a modern browser and have JavaScript enabled. **To play:** A deck is made up of 16 cards. Each card has its matched pair hidden somewhere in the deck. Start the game by clicking on a card to flip it open. This starts the game's timer as well, and each move counts against your final star rating (3 stars total). Find all matching pairs to win the game!
 
 Resources
 --------
