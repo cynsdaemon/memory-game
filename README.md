@@ -11,7 +11,9 @@ The live project is available [here](https://cynsdaemon.github.io/memory-game/).
 
 **To play:** A deck is made up of 16 cards. All cards have a matching pair hidden somewhere in the deck. The game and the game's timer starts when a player begins clicking on a card to flip it open. Each opened pair counts as a single move. The less moves a player makes, the greater their final star rating :star: :star: :star: will be.  Find all matching pairs to win the game! :sunglasses:
 
-## Screenshot of Memory Game during play
+Screenshot of Memory Game during play
+--------
+
 ![](img/screenshot-memory-game-during-play.png)
 
 Resources
