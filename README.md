@@ -2,7 +2,7 @@
 # Memory Game
 --------
 
-This repo serves as a home for the 'Memory Game' project in the Udacity [Frontend Web Development](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) Nanodegree.
+This repo serves as a home for the 'Memory Game' project in the Udacity [Frontend Web Development](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) Nanodegree. The Memory Game is a web-based card matching game. Gameplay and rules may have some similarities to the card game [Concentration](https://en.wikipedia.org/wiki/Concentration_(game)). However, this web based game uses JavaScript and the DOM to run a simple game loop, generate and shuffle cards on the deck, handle events, and implement a player moves and game timer.
 
 Instructions
 --------
