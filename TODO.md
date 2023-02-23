@@ -1,5 +1,4 @@
-TODO:
---------
+# TODO
 
 - [X] Change star rating after move based on how well the player is doing in game
 - [X] Add Player move counter
@@ -15,7 +14,7 @@ TODO:
     
 
 
-Refactor Memory Game -
+**Refactor Memory Game**
 
 Plan, organize and write for different states of the game:
 1. init game
