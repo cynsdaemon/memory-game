@@ -62,42 +62,18 @@ Bugs:
 Reference:
 -----------
 
-- For loop for HTMLCollection elements:
-    https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
-
-- Storing user input in an array:
-    https://stackoverflow.com/questions/10523200/storing-user-input-in-array
-
-- setTimeout:
-    https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
-
-- setTimout on Dev Docs:
-    https://devdocs.io/dom/windoworworkerglobalscope/settimeout
-
-- setInterval:
-    https://devdocs.io/dom/windoworworkerglobalscope/setinterval
-
-- How to convert time "seconds" into minutes:
-    https://stackoverflow.com/questions/37096367/how-to-convert-seconds-to-minutes-and-hours-in-javascript
-
-- JavaScript seconds to minutes and seconds:
-    https://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds
-
-- How to Make a Modal Box with CSS and JavaScript via W3C:
-    https://www.w3schools.com/howto/howto_css_modals.asp
-
-- The best way to reset your javaScript game after gameover and how
-    https://stackoverflow.com/questions/28744682/the-best-way-to-reset-your-javascript-game-after-gameover-and-how
-
-- CSS Tricks pointer-events: none;
-    https://css-tricks.com/almanac/properties/p/pointer-events/
-
-- How to compare two HTML elements
-    https://stackoverflow.com/questions/10679762/how-to-compare-two-html-elements
-
-- Per udacity review use strict mode:
-    https://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it
-
-    https://www.codexpedia.com/javascript/use-the-function-form-of-use-strict/
-
-    https://johnresig.com/blog/ecmascript-5-strict-mode-json-and-more/
+- [For loop for HTMLCollection elements](https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements)
+- [Storing user input in an array](https://stackoverflow.com/questions/10523200/storing-user-input-in-array)
+- [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
+- [setTimout on Dev Docs](https://devdocs.io/dom/windoworworkerglobalscope/settimeout)
+- [setInterval](https://devdocs.io/dom/windoworworkerglobalscope/setinterval)
+- [How to convert time "seconds" into minutes](https://stackoverflow.com/questions/37096367/how-to-convert-seconds-to-minutes-and-hours-in-javascript)
+- [JavaScript seconds to minutes and seconds](https://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds)
+- [How to Make a Modal Box with CSS and JavaScript via W3C](https://www.w3schools.com/howto/howto_css_modals.asp)
+- [The best way to reset your javaScript game after gameover and how](https://stackoverflow.com/questions/28744682/the-best-way-to-reset-your-javascript-game-after-gameover-and-how)
+- [CSS Tricks pointer-events: none](https://css-tricks.com/almanac/properties/p/pointer-events/)
+- [How to compare two HTML elements](https://stackoverflow.com/questions/10679762/how-to-compare-two-html-elements)
+- Per Udacity review use strict mode:
+    [What does strict mode do in JS?](https://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it) 
+    [Fuction form of use strict](https://www.codexpedia.com/javascript/use-the-function-form-of-use-strict/)
+    [ECMAscript 5 Strict Mode](https://johnresig.com/blog/ecmascript-5-strict-mode-json-and-more/)
