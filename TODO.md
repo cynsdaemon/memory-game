@@ -74,6 +74,6 @@ Reference:
 - [CSS Tricks pointer-events: none](https://css-tricks.com/almanac/properties/p/pointer-events/)
 - [How to compare two HTML elements](https://stackoverflow.com/questions/10679762/how-to-compare-two-html-elements)
 - Per Udacity review use strict mode:
-    [What does strict mode do in JS?](https://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it) 
-    [Fuction form of use strict](https://www.codexpedia.com/javascript/use-the-function-form-of-use-strict/)
-    [ECMAscript 5 Strict Mode](https://johnresig.com/blog/ecmascript-5-strict-mode-json-and-more/)
+    - [What does strict mode do in JS?](https://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it)
+    - [Fuction form of use strict](https://www.codexpedia.com/javascript/use-the-function-form-of-use-strict/)
+    - [ECMAscript 5 Strict Mode](https://johnresig.com/blog/ecmascript-5-strict-mode-json-and-more/)
